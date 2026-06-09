@@ -14,17 +14,16 @@
     padding: 0 var(--content-padding);
     z-index: 100;
     transition: height var(--dur-mid) var(--ease-out-quart),
-                background var(--dur-mid) var(--ease-out-quart),
-                border-color var(--dur-mid) var(--ease-out-quart);
-    border-bottom: 1px solid transparent;
+                background var(--dur-mid) var(--ease-out-quart);
+    border-bottom: none;
   }
 
   .nav.scrolled {
     height: 60px;
-    background: rgba(7, 7, 9, 0.85);
+    background: rgba(7, 7, 9, 0.92);
     backdrop-filter: blur(20px) saturate(180%);
     -webkit-backdrop-filter: blur(20px) saturate(180%);
-    border-bottom-color: var(--color-border);
+    border-bottom: 1px solid var(--color-border);
   }
 
   .nav__logo {

@@ -73,6 +73,10 @@
     gap: 48px;
     padding-top: 80px;
     min-height: 100vh;
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding-left: var(--content-padding);
+    padding-right: var(--content-padding);
   }
 
   .sidebar {
@@ -130,6 +134,7 @@
     .sidebar-layout {
       flex-direction: column;
       padding-top: 72px;
+      gap: 0;
     }
 
     .sidebar {
@@ -146,6 +151,7 @@
       overflow-x: auto;
       gap: 8px;
       padding-bottom: 8px;
+      -webkit-overflow-scrolling: touch;
     }
 
     .sidebar__link {
@@ -157,6 +163,10 @@
 
     .sidebar__link.active {
       border-bottom-color: var(--color-cyan);
+    }
+
+    .main-content {
+      padding: 32px 0;
     }
   }
 
