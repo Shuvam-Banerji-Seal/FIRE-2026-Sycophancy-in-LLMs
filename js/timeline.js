@@ -15,14 +15,11 @@
       entries.forEach(entry => {
         if (entry.isIntersecting) {
           const item = entry.target
-
-          // Stagger: add .go class with delay based on index
           const index = Array.from(items).indexOf(item)
           setTimeout(() => {
             item.classList.add('go')
           }, prefersReducedMotion ? 0 : index * 150)
 
-          // Add .go to timeline container on first item
           if (index === 0) {
             tl.classList.add('go')
           }
@@ -66,6 +63,9 @@
     const last = dates[dates.length - 1].date
     const now = new Date()
 
+    // Check if today is outside the timeline range
+    if (now < first || now > last) return null
+
     let nextEvent = null
     for (const d of dates) {
       if (d.date > now) { nextEvent = d; break }
@@ -76,53 +76,77 @@
       if (dates[i].date <= now) { prevEvent = dates[i]; break }
     }
 
-    const totalSpan = last.date - first.date
-    const elapsed = now - first.date
-    let progress = totalSpan > 0 ? elapsed / totalSpan : 0
-    progress = Math.max(0, Math.min(1, progress))
+    // Find which gap we're in
+    let gapIndex = 0
+    for (let i = 0; i < dates.length - 1; i++) {
+      if (now >= dates[i].date && now <= dates[i + 1].date) {
+        gapIndex = i
+        break
+      }
+    }
 
+    // Calculate days remaining
     let countdown = ''
     if (nextEvent) {
       const days = Math.ceil((nextEvent.date - now) / (1000 * 60 * 60 * 24))
       const eventName = nextEvent.item.querySelector('.tl-event')?.textContent || 'next event'
-      countdown = days > 0 ? `${days} days until ${eventName}` : `Today: ${eventName}`
-    } else if (prevEvent) {
-      const days = Math.floor((now - prevEvent.date) / (1000 * 60 * 60 * 24))
-      const eventName = prevEvent.item.querySelector('.tl-event')?.textContent || 'last event'
-      countdown = `${days} days since ${eventName}`
+      countdown = days > 0 ? `${days} days until ${eventName}` : `Today`
     }
 
-    return { progress, countdown }
+    return { gapIndex, countdown, dates }
   }
 
-  function createTodayMarker() {
+  function createTodayItem() {
     const result = computeTodayPosition()
     if (!result) return
 
-    const { progress, countdown } = result
+    const { gapIndex, countdown, dates } = result
+    const isOdd = gapIndex % 2 === 0  // next item after gap determines side
 
-    const marker = document.createElement('div')
-    marker.className = 'tl-today'
-    marker.style.top = `${progress * 100}%`
-    marker.innerHTML = `
-      <div class="tl-today-line"></div>
-      <div class="tl-today-label">
-        <span class="tl-today-text">Today</span>
-        <span class="tl-today-countdown">${countdown}</span>
+    // Create the today item HTML
+    const todayItem = document.createElement('div')
+    todayItem.className = `tl-item today-marker ${isOdd ? 'odd' : 'even'}`
+    todayItem.style.opacity = '0'
+
+    const cntHtml = `
+      <div class="tl-cnt">
+        <span class="date-badge date-badge--today">Today</span>
+        <div class="tl-event tl-event--today">${countdown}</div>
       </div>
     `
-    tl.appendChild(marker)
 
-    if (prefersReducedMotion) {
-      marker.style.opacity = '1'
+    if (isOdd) {
+      todayItem.innerHTML = `
+        ${cntHtml}
+        <div class="tl-cl"></div>
+        <div class="tl-dot tl-dot--today"></div>
+        <div class="tl-cr2"></div>
+        <div></div>
+      `
     } else {
-      marker.style.opacity = '0'
-      marker.style.transition = 'opacity 800ms ease'
-      requestAnimationFrame(() => {
-        requestAnimationFrame(() => { marker.style.opacity = '1' })
-      })
+      todayItem.innerHTML = `
+        <div></div>
+        <div class="tl-cl2"></div>
+        <div class="tl-dot tl-dot--today"></div>
+        <div class="tl-cr"></div>
+        ${cntHtml}
+      `
     }
+
+    // Insert after the gap item
+    const insertAfter = dates[gapIndex].item
+    insertAfter.after(todayItem)
+
+    // Animate in
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        todayItem.style.transition = 'opacity 0.6s ease'
+        todayItem.style.opacity = '1'
+        todayItem.classList.add('go')
+      })
+    })
   }
 
-  createTodayMarker()
+  // Wait for initial animations, then add today marker
+  setTimeout(createTodayItem, 1500)
 })()

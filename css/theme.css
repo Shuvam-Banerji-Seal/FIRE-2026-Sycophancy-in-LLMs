@@ -130,17 +130,37 @@
 }
 
 [data-theme="light"] .nav__overlay {
-  background: rgba(245, 240, 232, 0.97);
+  background: rgba(245, 240, 232, 0.98);
 }
 
 /* Mobile overlay theme toggle */
+.nav__overlay .theme-toggle {
+  margin-top: 24px;
+  padding: 12px 28px;
+  font-size: 0.85rem;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: rgba(255, 255, 255, 0.6);
+  background: transparent;
+  cursor: pointer;
+  letter-spacing: 0.15em;
+}
+
+.nav__overlay .theme-toggle:hover,
+.nav__overlay .theme-toggle:focus {
+  border-color: var(--color-cyan);
+  color: var(--color-cyan);
+}
+
 [data-theme="light"] .nav__overlay .theme-toggle {
   border-color: var(--color-border);
   color: var(--color-muted);
+  background: transparent;
 }
 
-.nav__overlay .theme-toggle {
-  margin-top: 16px;
+[data-theme="light"] .nav__overlay .theme-toggle:hover,
+[data-theme="light"] .nav__overlay .theme-toggle:focus {
+  border-color: var(--color-cyan);
+  color: var(--color-cyan);
 }
 
 [data-theme="light"] .nav__overlay .nav-link {
@@ -149,6 +169,17 @@
 
 [data-theme="light"] .nav__logo {
   color: var(--color-cyan);
+}
+
+[data-theme="light"] .nav__toggle span {
+  background: var(--color-text);
+}
+
+/* Desktop nav toggle button */
+@media (min-width: 901px) {
+  .nav__overlay .theme-toggle {
+    display: none;
+  }
 }
 
 /* Hero */
@@ -450,7 +481,10 @@ html {
   transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-body,
+body {
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
 .card,
 .task-card,
 .organizer-card,
@@ -464,6 +498,7 @@ body,
 .tl-track::after,
 .tl-dot,
 .tl-cl,
-.tl-cr {
+.tl-cr,
+.date-badge {
   transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
 }

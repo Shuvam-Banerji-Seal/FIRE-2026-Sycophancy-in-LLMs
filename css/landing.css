@@ -544,52 +544,42 @@
     opacity: 0.5;
   }
 
-  .tl-today {
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-    z-index: 5;
-    pointer-events: none;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .tl-today-line {
-    width: 48px;
-    height: 3px;
+  /* Today marker as timeline item */
+  .today-marker .tl-dot--today {
+    border-color: var(--color-amber);
     background: var(--color-amber);
-    border-radius: 2px;
     box-shadow: 0 0 12px rgba(255, 179, 71, 0.5), 0 0 24px rgba(255, 179, 71, 0.2);
-    margin-bottom: 8px;
+    animation: today-pulse 2s ease-in-out infinite;
   }
 
-  .tl-today-label {
-    background: var(--color-surface-1);
-    border: 1px solid var(--color-amber);
-    border-radius: 2px;
-    padding: 6px 14px;
-    text-align: center;
-    white-space: nowrap;
-    box-shadow: 0 0 12px rgba(255, 179, 71, 0.15);
+  @keyframes today-pulse {
+    0%, 100% { box-shadow: 0 0 0 4px rgba(255, 179, 71, 0.2); }
+    50%      { box-shadow: 0 0 0 10px rgba(255, 179, 71, 0.05); }
   }
 
-  .tl-today-text {
-    font-family: var(--font-display);
-    font-weight: 700;
-    font-size: 0.7rem;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--color-amber);
-    display: block;
+  .date-badge--today {
+    background: rgba(255, 179, 71, 0.1) !important;
+    border-color: var(--color-amber) !important;
+    color: var(--color-amber) !important;
   }
 
-  .tl-today-countdown {
-    font-family: var(--font-mono);
-    font-size: 0.65rem;
-    color: var(--color-muted);
-    display: block;
-    margin-top: 2px;
+  .tl-item.odd .date-badge--today {
+    border-right: none !important;
+  }
+
+  .tl-item.even .date-badge--today {
+    border-left: none !important;
+  }
+
+  .tl-event--today {
+    color: var(--color-amber) !important;
+    font-weight: 500;
+  }
+
+  .today-marker .tl-cl,
+  .today-marker .tl-cr {
+    background: var(--color-amber) !important;
+    box-shadow: 0 0 6px rgba(255, 179, 71, 0.3);
   }
 
   /* ── Page Title Animation ────────────────────────────── */
@@ -656,11 +646,6 @@
 
     .tl-item.future .date-badge {
       border-color: var(--color-ghost) !important;
-    }
-
-    .tl-today {
-      left: 11px;
-      transform: none;
     }
   }
 
