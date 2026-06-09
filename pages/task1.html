@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Task 1: Explainable Statute Prediction — FIRE 2026</title>
+  <meta name="theme-color" content="#000000">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -16,6 +17,7 @@
   <link rel="stylesheet" href="../css/task.css">
   <link rel="stylesheet" href="../css/syntax.css">
   <link rel="stylesheet" href="../css/animations.css">
+  <link rel="stylesheet" href="../css/theme.css">
 </head>
 <body>
 
@@ -24,7 +26,8 @@
   <!-- ── Navigation ───────────────────────────────────── -->
   <nav class="nav" role="navigation">
     <a href="../index.html" class="nav__logo">
-      <img src="../assets/logo.svg" alt="" width="28" height="28">
+      <img src="../assets/logo.svg" alt="" width="28" height="28" class="logo-dark">
+      <img src="../assets/logo-light.svg" alt="" width="28" height="28" class="logo-light">
       FIRE 2026
     </a>
     <div class="nav__links">
@@ -33,6 +36,7 @@
       <a href="task2.html" class="nav-link">Task 2: Sycophancy</a>
       <a href="faq.html" class="nav-link">FAQ</a>
       <a href="registration.html" class="nav-link btn btn-outline" style="padding: 8px 20px; font-size: 0.7rem;">Register</a>
+      <button class="theme-toggle" aria-label="Switch theme">Light</button>
     </div>
     <button class="nav__toggle" aria-label="Toggle menu">
       <span></span><span></span><span></span>
@@ -499,6 +503,7 @@
     </div>
   </footer>
 
+  <script src="../js/theme.js"></script>
   <script src="../js/nav.js"></script>
   <script src="../js/scroll-reveal.js"></script>
   <script src="../js/syntax.js"></script>

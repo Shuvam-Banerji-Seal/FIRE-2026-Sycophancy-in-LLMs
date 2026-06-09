@@ -439,6 +439,84 @@
     opacity: 0.5;
   }
 
+  /* Connecting lines from dots to content */
+  .timeline__item::after {
+    content: '';
+    position: absolute;
+    top: 10px;
+    width: 24px;
+    height: 2px;
+    background: var(--color-border);
+    box-shadow: 0 0 6px rgba(0, 229, 255, 0.15);
+    transition: background var(--dur-mid), box-shadow var(--dur-mid);
+  }
+
+  .timeline__item:nth-child(odd)::after {
+    right: calc(50% - 6px);
+  }
+
+  .timeline__item:nth-child(even)::after {
+    left: calc(50% - 30px);
+  }
+
+  .timeline__item.past::after {
+    opacity: 0.4;
+  }
+
+  .timeline__item.future::after {
+    background: var(--color-cyan);
+    box-shadow: 0 0 8px rgba(0, 229, 255, 0.25);
+  }
+
+  /* Today marker */
+  .timeline__today {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 5;
+    pointer-events: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .timeline__today-line {
+    width: 48px;
+    height: 3px;
+    background: var(--color-amber);
+    border-radius: 2px;
+    box-shadow: 0 0 12px rgba(255, 179, 71, 0.5), 0 0 24px rgba(255, 179, 71, 0.2);
+    margin-bottom: 8px;
+  }
+
+  .timeline__today-label {
+    background: var(--color-surface-1);
+    border: 1px solid var(--color-amber);
+    border-radius: 2px;
+    padding: 6px 14px;
+    text-align: center;
+    white-space: nowrap;
+    box-shadow: 0 0 12px rgba(255, 179, 71, 0.15);
+  }
+
+  .timeline__today-text {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--color-amber);
+    display: block;
+  }
+
+  .timeline__today-countdown {
+    font-family: var(--font-mono);
+    font-size: 0.65rem;
+    color: var(--color-muted);
+    display: block;
+    margin-top: 2px;
+  }
+
   @media (max-width: 768px) {
     .timeline__line,
     .timeline__line-fill {
@@ -454,6 +532,13 @@
     }
     .timeline__dot {
       left: 16px;
+    }
+    .timeline__item::after {
+      display: none;
+    }
+    .timeline__today {
+      left: 16px;
+      transform: none;
     }
   }
 

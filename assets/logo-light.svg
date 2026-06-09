@@ -1,0 +1,35 @@
+<svg viewBox="0 0 300 300" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- Left bubble -->
+  <path d="M90 60 L42 60 C36 60 31 65 31 71 L31 145 C31 151 36 156 42 156 L70 156 L58 178 L88 156 L90 156" stroke="#0a7a9e" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round" filter="url(#glow)"/>
+  <path d="M90 60 L138 60 C144 60 149 65 149 71 L149 145 C149 151 144 156 138 156 L90 156" stroke="#0a7a9e" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round" filter="url(#glow)"/>
+  <!-- Left bubble checkmark -->
+  <path d="M72 100 L86 114 L110 86" stroke="#1a8a5a" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round" filter="url(#glow)"/>
+  <!-- Right bubble (mirrored) -->
+  <path d="M210 60 L258 60 C264 60 269 65 269 71 L269 145 C269 151 264 156 258 156 L230 156 L242 178 L212 156 L210 156" stroke="#c42050" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round" filter="url(#glow)"/>
+  <path d="M210 60 L162 60 C156 60 151 65 151 71 L151 145 C151 151 156 156 162 156 L210 156" stroke="#c42050" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round" filter="url(#glow)"/>
+  <!-- Right bubble checkmark -->
+  <path d="M192 100 L206 114 L230 86" stroke="#1a8a5a" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round" filter="url(#glow)"/>
+  <!-- Center broken scale -->
+  <line x1="150" y1="190" x2="150" y2="260" stroke="#2c2416" stroke-width="2" stroke-linecap="round" filter="url(#glow)"/>
+  <line x1="130" y1="260" x2="170" y2="260" stroke="#2c2416" stroke-width="2" stroke-linecap="round" filter="url(#glow)"/>
+  <!-- Left arm -->
+  <line x1="150" y1="200" x2="105" y2="215" stroke="#0a7a9e" stroke-width="2" stroke-linecap="round" filter="url(#glow)"/>
+  <line x1="95" y1="215" x2="115" y2="215" stroke="#0a7a9e" stroke-width="2" stroke-linecap="round" filter="url(#glow)"/>
+  <path d="M98 215 L105 235 L112 215" stroke="#0a7a9e" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round" filter="url(#glow)"/>
+  <!-- Right arm -->
+  <line x1="150" y1="200" x2="195" y2="215" stroke="#c42050" stroke-width="2" stroke-linecap="round" filter="url(#glow)"/>
+  <line x1="185" y1="215" x2="205" y2="215" stroke="#c42050" stroke-width="2" stroke-linecap="round" filter="url(#glow)"/>
+  <path d="M188 215 L195 235 L202 215" stroke="#c42050" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round" filter="url(#glow)"/>
+  <!-- Crack on pillar -->
+  <path d="M150 220 L146 232 L153 240 L148 252" stroke="#b87a20" stroke-width="1" fill="none" stroke-linecap="round" stroke-linejoin="round" filter="url(#glow)"/>
+</svg>
