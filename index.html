@@ -248,72 +248,94 @@
             <span class="eyebrow" data-reveal="fade-up">Schedule</span>
             <h2 data-reveal="fade-up">Timeline</h2>
           </div>
-          <div class="timeline">
-            <div class="timeline__line"></div>
-            <div class="timeline__line-fill"></div>
+          <div class="tl" id="tl">
+            <div class="tl-track"></div>
 
-            <div class="timeline__item past" data-reveal="fade-up">
-              <div class="timeline__dot"></div>
-              <div class="timeline__connector"></div>
-              <div>
-                <div class="timeline__date"><span class="date-badge">15 May 2026</span></div>
-                <div class="timeline__event">Track website opens, training data released</div>
+            <div class="tl-item past odd" data-reveal="fade-up">
+              <div class="tl-cnt">
+                <span class="date-badge">15 May 2026</span>
+                <div class="tl-event">Track website opens, training data released</div>
+              </div>
+              <div class="tl-cl"></div>
+              <div class="tl-dot"></div>
+              <div class="tl-cr2"></div>
+              <div></div>
+            </div>
+
+            <div class="tl-item past even" data-reveal="fade-up">
+              <div></div>
+              <div class="tl-cl2"></div>
+              <div class="tl-dot"></div>
+              <div class="tl-cr"></div>
+              <div class="tl-cnt">
+                <span class="date-badge">15 June 2026</span>
+                <div class="tl-event">Training data release (500 cases)</div>
               </div>
             </div>
-            <div class="timeline__item past" data-reveal="fade-up">
-              <div class="timeline__dot"></div>
-              <div class="timeline__connector"></div>
-              <div>
-                <div class="timeline__date"><span class="date-badge">15 June 2026</span></div>
-                <div class="timeline__event">Training data release (500 cases)</div>
+
+            <div class="tl-item active odd" data-reveal="fade-up">
+              <div class="tl-cnt">
+                <span class="date-badge date-badge--active">20 July 2026</span>
+                <div class="tl-event">Test data release (100 cases)</div>
+              </div>
+              <div class="tl-cl"></div>
+              <div class="tl-dot"></div>
+              <div class="tl-cr2"></div>
+              <div></div>
+            </div>
+
+            <div class="tl-item future even" data-reveal="fade-up">
+              <div></div>
+              <div class="tl-cl2"></div>
+              <div class="tl-dot"></div>
+              <div class="tl-cr"></div>
+              <div class="tl-cnt">
+                <span class="date-badge">30 June 2026</span>
+                <div class="tl-event">Run submission deadline</div>
               </div>
             </div>
-            <div class="timeline__item active" data-reveal="fade-up">
-              <div class="timeline__dot"></div>
-              <div class="timeline__connector"></div>
-              <div>
-                <div class="timeline__date"><span class="date-badge date-badge--active">20 July 2026</span></div>
-                <div class="timeline__event">Test data release (100 cases)</div>
+
+            <div class="tl-item future odd" data-reveal="fade-up">
+              <div class="tl-cnt">
+                <span class="date-badge">15 July 2026</span>
+                <div class="tl-event">Track results declared</div>
+              </div>
+              <div class="tl-cl"></div>
+              <div class="tl-dot"></div>
+              <div class="tl-cr2"></div>
+              <div></div>
+            </div>
+
+            <div class="tl-item future even" data-reveal="fade-up">
+              <div></div>
+              <div class="tl-cl2"></div>
+              <div class="tl-dot"></div>
+              <div class="tl-cr"></div>
+              <div class="tl-cnt">
+                <span class="date-badge">30 Aug 2026</span>
+                <div class="tl-event">Working notes due</div>
               </div>
             </div>
-            <div class="timeline__item future" data-reveal="fade-up">
-              <div class="timeline__dot"></div>
-              <div class="timeline__connector"></div>
-              <div>
-                <div class="timeline__date"><span class="date-badge">30 June 2026</span></div>
-                <div class="timeline__event">Run submission deadline</div>
+
+            <div class="tl-item future odd" data-reveal="fade-up">
+              <div class="tl-cnt">
+                <span class="date-badge">30 Sep 2026</span>
+                <div class="tl-event">Camera-ready copies</div>
               </div>
+              <div class="tl-cl"></div>
+              <div class="tl-dot"></div>
+              <div class="tl-cr2"></div>
+              <div></div>
             </div>
-            <div class="timeline__item future" data-reveal="fade-up">
-              <div class="timeline__dot"></div>
-              <div class="timeline__connector"></div>
-              <div>
-                <div class="timeline__date"><span class="date-badge">15 July 2026</span></div>
-                <div class="timeline__event">Track results declared</div>
-              </div>
-            </div>
-            <div class="timeline__item future" data-reveal="fade-up">
-              <div class="timeline__dot"></div>
-              <div class="timeline__connector"></div>
-              <div>
-                <div class="timeline__date"><span class="date-badge">30 Aug 2026</span></div>
-                <div class="timeline__event">Working notes due</div>
-              </div>
-            </div>
-            <div class="timeline__item future" data-reveal="fade-up">
-              <div class="timeline__dot"></div>
-              <div class="timeline__connector"></div>
-              <div>
-                <div class="timeline__date"><span class="date-badge">30 Sep 2026</span></div>
-                <div class="timeline__event">Camera-ready copies</div>
-              </div>
-            </div>
-            <div class="timeline__item future" data-reveal="fade-up">
-              <div class="timeline__dot"></div>
-              <div class="timeline__connector"></div>
-              <div>
-                <div class="timeline__date"><span class="date-badge">Dec 2026</span></div>
-                <div class="timeline__event">FIRE 2026 Conference</div>
+
+            <div class="tl-item future even" data-reveal="fade-up">
+              <div></div>
+              <div class="tl-cl2"></div>
+              <div class="tl-dot"></div>
+              <div class="tl-cr"></div>
+              <div class="tl-cnt">
+                <span class="date-badge">Dec 2026</span>
+                <div class="tl-event">FIRE 2026 Conference</div>
               </div>
             </div>
           </div>
