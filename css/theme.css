@@ -393,6 +393,25 @@
 [data-theme="light"] .logo-light { display: block; }
 [data-theme="light"] .logo-dark  { display: none; }
 
+/* Logo background in light mode for visibility */
+[data-theme="light"] .nav__logo img {
+  background: #1a2a1a;
+  border-radius: 4px;
+  padding: 2px;
+}
+
+[data-theme="light"] .hero__logo {
+  background: #1a2a1a;
+  border-radius: 8px;
+  padding: 8px;
+}
+
+[data-theme="light"] .loader-logo-img {
+  background: #1a2a1a;
+  border-radius: 6px;
+  padding: 4px;
+}
+
 /* ════════════════════════════════════════════════════════ */
 /* SMOOTH TRANSITIONS                                     */
 /* ════════════════════════════════════════════════════════ */
