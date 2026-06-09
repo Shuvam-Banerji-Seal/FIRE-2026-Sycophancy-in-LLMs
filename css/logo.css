@@ -1,0 +1,135 @@
+/* logo.css - Sycophancy logo styles */
+
+.logo-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+.logo-mark {
+  width: 80px;
+  height: 80px;
+  object-fit: contain;
+  opacity: 0.85;
+  transition: opacity 0.3s ease;
+}
+
+.logo-mark:hover {
+  opacity: 1;
+}
+
+.logo-mark[src$=".svg"] {
+  filter: grayscale(0.3);
+}
+
+/* ── Wordmark ── */
+
+.wordmark {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: 6px;
+  color: #555;
+  text-transform: uppercase;
+}
+
+.wordmark span {
+  color: #888;
+}
+
+/* ── Subtitle ── */
+
+.subtitle {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  font-size: 11px;
+  font-weight: 400;
+  color: #333;
+  letter-spacing: 0.5px;
+}
+
+/* ── Track info ── */
+
+.track-info {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  font-size: 10px;
+  font-weight: 500;
+  color: #2a2a2a;
+  letter-spacing: 0.3px;
+  margin-top: 2px;
+}
+
+/* ── Loader variant ── */
+
+.loader-logo {
+  margin-bottom: 20px;
+}
+
+.loader-logo .logo-mark {
+  width: 64px;
+  height: 64px;
+}
+
+.loader-logo .wordmark {
+  font-size: 14px;
+  letter-spacing: 5px;
+}
+
+.loader-logo .subtitle {
+  font-size: 10px;
+}
+
+.loader-logo .track-info {
+  font-size: 9px;
+}
+
+/* ── Main page variant ── */
+
+.main-logo {
+  margin-bottom: 2rem;
+}
+
+.main-logo .logo-mark {
+  width: 100px;
+  height: 100px;
+}
+
+.main-logo .wordmark {
+  font-size: 24px;
+  letter-spacing: 8px;
+}
+
+.main-logo .subtitle {
+  font-size: 13px;
+}
+
+.main-logo .track-info {
+  font-size: 11px;
+}
+
+/* ── Animations ── */
+
+@keyframes logoFadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 0.85; transform: translateY(0); }
+}
+
+.logo-container {
+  animation: logoFadeIn 0.8s ease forwards;
+}
+
+/* ── Responsive ── */
+
+@media (max-width: 700px) {
+  .main-logo .logo-mark {
+    width: 80px;
+    height: 80px;
+  }
+  .main-logo .wordmark {
+    font-size: 18px;
+    letter-spacing: 6px;
+  }
+  .main-logo .subtitle {
+    font-size: 11px;
+  }
+}

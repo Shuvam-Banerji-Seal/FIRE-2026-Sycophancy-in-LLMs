@@ -1,0 +1,275 @@
+/* loader.css - Sycophancy loader styles */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: #000;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: #e0e0e0;
+  overflow: hidden;
+}
+
+/* ── Loader overlay ── */
+
+#loader-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background: #000;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 0.8s ease;
+}
+
+#loader-overlay.fade-out {
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* ── Main content ── */
+
+#main-content {
+  opacity: 0;
+  transition: opacity 0.8s ease;
+}
+
+#main-content.show {
+  opacity: 1;
+}
+
+h2 {
+  font-size: 13px;
+  font-weight: 500;
+  color: #444;
+  margin-bottom: 24px;
+  letter-spacing: 0.5px;
+}
+
+/* ── Chat panels ── */
+
+.chats {
+  display: flex;
+  gap: 16px;
+}
+
+.chat-box {
+  width: 320px;
+  background: #0a0a0a;
+  border: 1px solid #1a1a1a;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.chat-header {
+  padding: 10px 14px;
+  font-size: 11px;
+  font-weight: 600;
+  color: #333;
+  border-bottom: 1px solid #1a1a1a;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.chat-header svg {
+  flex-shrink: 0;
+}
+
+.tag {
+  font-size: 9px;
+  padding: 2px 6px;
+  border-radius: 3px;
+  font-weight: 600;
+  background: #111;
+  color: #333;
+  border: 1px solid #1a1a1a;
+}
+
+.chat-body {
+  padding: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* ── Messages ── */
+
+.msg {
+  padding: 8px 12px;
+  border-radius: 8px;
+  font-size: 12px;
+  line-height: 1.6;
+  opacity: 0;
+  transform: translateY(6px);
+}
+
+.msg.visible {
+  animation: fadeIn 0.3s ease forwards;
+}
+
+@keyframes fadeIn {
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.user-msg {
+  background: #0d0d0d;
+  border: 1px solid #1a1a1a;
+  color: #e8e8e8;
+  font-weight: 500;
+  letter-spacing: 0.2px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+}
+
+.user-msg svg {
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.user-msg mark {
+  background: none;
+  color: #ffffff;
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 0.4px;
+  -webkit-text-stroke: 0.3px rgba(255, 255, 255, 0.3);
+}
+
+.ai-msg {
+  background: #080808;
+  border: 1px solid #1a1a1a;
+  color: #e0e0e0;
+  font-weight: 500;
+  letter-spacing: 0.2px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+}
+
+.ai-msg svg {
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.ai-label {
+  font-size: 9px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: #2a2a2a;
+  margin-bottom: 3px;
+}
+
+.msg-text {
+  flex: 1;
+}
+
+/* ── Typing indicator ── */
+
+.typing-dots {
+  display: inline-flex;
+  gap: 4px;
+  padding: 4px 0;
+}
+
+.typing-dots span {
+  width: 5px;
+  height: 5px;
+  background: #2a2a2a;
+  border-radius: 50%;
+  animation: bounce 1s ease-in-out infinite;
+}
+
+.typing-dots span:nth-child(2) { animation-delay: 0.15s; }
+.typing-dots span:nth-child(3) { animation-delay: 0.3s; }
+
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); opacity: 0.3; }
+  50% { transform: translateY(-5px); opacity: 1; }
+}
+
+.cursor {
+  display: inline-block;
+  width: 1.5px;
+  height: 12px;
+  background: #555;
+  vertical-align: text-bottom;
+  animation: blink 0.5s step-end infinite;
+}
+
+@keyframes blink {
+  50% { opacity: 0; }
+}
+
+/* ── Tagline ── */
+
+.bottom-text {
+  margin-top: 28px;
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+  color: #ffffff;
+  text-shadow: 0 0 20px rgba(255, 255, 255, 0.15);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  opacity: 0;
+  transition: opacity 0.6s ease;
+}
+
+.bottom-text.visible {
+  opacity: 1;
+}
+
+/* ── Pretext stats overlay ── */
+
+.pretext-stats {
+  position: fixed;
+  bottom: 16px;
+  right: 16px;
+  font-family: 'SF Mono', 'Fira Code', monospace;
+  font-size: 10px;
+  color: #222;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  opacity: 0;
+  transition: opacity 0.8s ease;
+}
+
+.pretext-stats.visible {
+  opacity: 1;
+}
+
+.pretext-stats span {
+  background: #0a0a0a;
+  border: 1px solid #1a1a1a;
+  border-radius: 4px;
+  padding: 3px 6px;
+  font-variant-numeric: tabular-nums;
+}
+
+/* ── Responsive ── */
+
+@media (max-width: 700px) {
+  .chats {
+    flex-direction: column;
+    gap: 12px;
+  }
+  .chat-box {
+    width: 90vw;
+  }
+}

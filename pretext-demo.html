@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Pretext – Line Height & Text Layout Demo</title>
+  <link rel="stylesheet" href="css/styles.css">
+  <style>
+    body {
+      font-family: Inter, 'Helvetica Neue', Roboto, Arial, sans-serif;
+      background: #f0f4f8;
+      color: #1a202c;
+      margin: 0;
+      padding: 2rem;
+      line-height: 1.6;
+    }
+    h1 {
+      text-align: center;
+      font-size clamp(2rem, 5vw, 3rem);
+      margin-bottom: 1rem;
+    }
+
+    /* ── Measurement card ── */
+    .card {
+      background: #fff;
+      border-radius: 1rem;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.06);
+      padding: 2rem;
+      max-width: 900px;
+      margin: 2rem auto;
+    }
+    .textarea-wrapper {
+      margin-bottom: 1rem;
+    }
+    textarea {
+      width: 100%;
+      height: 120px;
+      padding: 0.75rem;
+      border: 2px solid #e2e8f0;
+      border-radius: 0.5rem;
+      font-size: 1rem;
+      resize: vertical;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+    textarea:focus { border-color: #3182ce; }
+    .controls {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1.5rem;
+    }
+    .slider-label {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      font-size: 0.9rem;
+      min-width: 100px;
+    }
+    input[type=range] {
+      width: 120px;
+      accent-color: #3182ce;
+    }
+    .results {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      font-size: 0.95rem;
+    }
+    .results span {
+      background: #edf2f7;
+      padding: 0.4rem 0.8rem;
+      border-radius: 0.4rem;
+      font-variant-numeric: tabular-nums;
+    }
+
+    /* ── Live comparison canvas ── */
+    .demo {
+      margin-top: 2rem;
+      text-align: center;
+    }
+    canvas {
+      background: #fff;
+      border: 2px solid #e2e8f0;
+      border-radius: 0.75rem;
+      max-width: 100%;
+      height: auto;
+    }
+
+    footer {
+      text-align: center;
+      margin-top: 3rem;
+      font-size: 0.85rem;
+      color: #718096;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Pretext – Text Layout Demo</h1>
+
+  <div class="card">
+    <!-- 1. Text input & controls -->
+    <div class="textarea-wrapper">
+      <textarea id="text-input" placeholder="Type here to observe text metrics…">We have  different  minds,    and     that    is    fine.
+The world is vast and room enough
+for every single way we
+- might -
+perceive it in our heads.</textarea>
+    </div>
+
+    <div class="controls">
+      <div class="slider-label">
+        <span>Width (<span id="width-val">400</span> px)</span>
+        <input type="range" id="width-slider" min="100" max="900" value="400">
+      </div>
+      <div class="slider-label">
+        <span>Font Size (<span id="size-val">20</span> px)</span>
+        <input type="range" id="size-slider" min="10" max="72" value="20">
+      </div>
+      <div class="slider-label">
+        <span>Line Height (<span id="lh-val">28</span> px)</span>
+        <input type="range" id="lh-slider" min="16" max="120" value="28">
+      </div>
+    </div>
+
+    <div class="results" id="results">
+      <span id="r-linecount">Lines: 4</span>
+      <span id="r-height">Total Height: 133 px</span>
+    </div>
+
+    <!-- 2. Canvas visualisation (exactly what pretext sees) -->
+    <div class="demo">
+      <canvas id="canvas" width="800" height="360"></canvas>
+    </div>
+  </div>
+
+  <footer>
+    Powered by <a href="https://github.com/chenglou/pretext" target="_blank">@chenglou/pretext</a>
+    ·
+    No DOM reflows – measure once, layout anywhere.
+  </footer>
+
+  <!--
+    Since pretext is a pure-JS library we can import it directly from its source.
+    The package uses ESM, so a simple bare import path pointing to the source works
+    when served via an HTTP server (or via <script type=module> with a proper
+    import map / local bundler).  For a zero-tooling setup the easiest route is
+    to import the source .ts files as modules; most modern browsers support
+    type=module with relative paths.
+  -->
+  <script type="module">
+    // Adjust the path below if you move this HTML page elsewhere.
+import { prepare, layout, layoutWithLines } from 'https://esm.sh/gh/chenglou/pretext@latest?no-check';
+import { measureNaturalWidth } from 'https://esm.sh/gh/chenglou/pretext@latest?no-check';
+
+    const textarea = document.getElementById('text-input')
+    const widthSlider  = document.getElementById('width-slider')
+    const sizeSlider   = document.getElementById('size-slider')
+    const lhSlider     = document.getElementById('lh-slider')
+    const rLineCount = document.getElementById('r-linecount')
+    const rHeight    = document.getElementById('r-height')
+    const canvas     = document.getElementById('canvas')
+    const ctx        = canvas.getContext('2d')
+
+    // Update displayed numbers next to sliders
+    function updateLabels() {
+      document.getElementById('width-val').textContent = widthSlider.value
+      document.getElementById('size-val').textContent  = sizeSlider.value
+      document.getElementById('lh-val').textContent    = lhSlider.value
+    }
+
+    // Main layout + draw routine
+    function update() {
+      const text  = textarea.value
+      const w     = Number(widthSlider.value)
+      const size  = Number(sizeSlider.value)
+      const lH    = Number(lhSlider.value)
+      const font  = `${size}px Inter, 'Helvetica Neue', Roboto, Arial, sans-serif`
+
+      // ── Pretext measurement ──
+      const prepared = prepare(text, font)
+      const { height, lineCount } = layout(prepared, w, lH)
+
+      // Also grab natural (unconstrained) width for the demo
+      const naturalWidth = measureNaturalWidth(prepared)
+
+      // Update HTML stats
+      rLineCount.textContent = `Lines: ${lineCount}`
+      rHeight.textContent    = `Total Height: ${Math.round(height)} px · Natural Width: ${Math.round(naturalWidth)} px`
+
+      // ── Visualise on canvas ──
+      // Resize canvas to fit the exact measured content area
+      canvas.width  = w
+      canvas.height = height
+
+      // Generate the actual wrapped lines so we can draw them
+      const { lines } = layout(prepared, w, lH)
+
+      // Draw
+      ctx.clearRect(0, 0, canvas.width, canvas.height)
+      ctx.textBaseline = 'top'
+      ctx.font = font
+      ctx.fillStyle = '#1a202c'
+
+      let y = 0
+      for (let i = 0; i < lines.length; i++) {
+        const line = lines[i]
+        ctx.fillText(line.text, 0, y)
+        y += lH
+      }
+
+      // ── Draw bounding box for reference ──
+      ctx.strokeStyle = '#3182ce'
+      ctx.lineWidth = 2
+      ctx.strokeRect(0, 0, w, height)
+    }
+
+    // Wire everything up
+    ;[textarea, widthSlider, sizeSlider, lhSlider].forEach(el => {
+      el.addEventListener('input', () => { updateLabels(); update() })
+    })
+
+    // Initial run
+    updateLabels()
+    update()
+  </script>
+
+</body>
+</html>
