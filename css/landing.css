@@ -440,30 +440,30 @@
   }
 
   /* Connecting lines from dots to content */
-  .timeline__item::after {
-    content: '';
+  .timeline__connector {
     position: absolute;
     top: 10px;
-    width: 24px;
+    width: 28px;
     height: 2px;
     background: var(--color-border);
     box-shadow: 0 0 6px rgba(0, 229, 255, 0.15);
     transition: background var(--dur-mid), box-shadow var(--dur-mid);
+    z-index: 1;
   }
 
-  .timeline__item:nth-child(odd)::after {
-    right: calc(50% - 6px);
+  .timeline__item:nth-child(odd) .timeline__connector {
+    right: calc(50% + 6px);
   }
 
-  .timeline__item:nth-child(even)::after {
-    left: calc(50% - 30px);
+  .timeline__item:nth-child(even) .timeline__connector {
+    left: calc(50% + 6px);
   }
 
-  .timeline__item.past::after {
+  .timeline__item.past .timeline__connector {
     opacity: 0.4;
   }
 
-  .timeline__item.future::after {
+  .timeline__item.future .timeline__connector {
     background: var(--color-cyan);
     box-shadow: 0 0 8px rgba(0, 229, 255, 0.25);
   }
@@ -534,6 +534,9 @@
       left: 16px;
     }
     .timeline__item::after {
+      display: none;
+    }
+    .timeline__connector {
       display: none;
     }
     .timeline__today {
