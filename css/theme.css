@@ -133,6 +133,16 @@
   background: rgba(245, 240, 232, 0.97);
 }
 
+/* Mobile overlay theme toggle */
+[data-theme="light"] .nav__overlay .theme-toggle {
+  border-color: var(--color-border);
+  color: var(--color-muted);
+}
+
+.nav__overlay .theme-toggle {
+  margin-top: 16px;
+}
+
 [data-theme="light"] .nav__overlay .nav-link {
   color: var(--color-text);
 }

@@ -92,7 +92,8 @@
     background: none;
     border: none;
     cursor: pointer;
-    padding: 8px;
+    padding: 12px;
+    margin-right: 8px;
     z-index: 110;
   }
 

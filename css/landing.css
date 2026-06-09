@@ -442,20 +442,21 @@
   /* Connecting lines from dots to content */
   .timeline__connector {
     position: absolute;
-    top: 10px;
-    width: 28px;
+    top: 8px;
     height: 2px;
     background: var(--color-border);
     box-shadow: 0 0 6px rgba(0, 229, 255, 0.15);
     transition: background var(--dur-mid), box-shadow var(--dur-mid);
-    z-index: 1;
+    z-index: 3;
   }
 
   .timeline__item:nth-child(odd) .timeline__connector {
+    width: 26px;
     right: calc(50% + 6px);
   }
 
   .timeline__item:nth-child(even) .timeline__connector {
+    width: 26px;
     left: calc(50% + 6px);
   }
 
@@ -515,6 +516,19 @@
     color: var(--color-muted);
     display: block;
     margin-top: 2px;
+  }
+
+  /* ── Page Title Animation ────────────────────────────── */
+  .page-title .char {
+    display: inline-block;
+    opacity: 0;
+    clip-path: inset(0 100% 0 0);
+    animation: hero-title-reveal 500ms var(--ease-out-expo) both;
+  }
+
+  .page-title .line-break {
+    display: block;
+    height: 0.1em;
   }
 
   @media (max-width: 768px) {
