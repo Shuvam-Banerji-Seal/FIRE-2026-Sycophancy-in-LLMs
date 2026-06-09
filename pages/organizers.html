@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Organizers — FIRE 2026</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400;1,500&family=Fira+Code:wght@400&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="../css/base.css">
+  <link rel="stylesheet" href="../css/type.css">
+  <link rel="stylesheet" href="../css/layout.css">
+  <link rel="stylesheet" href="../css/components.css">
+  <link rel="stylesheet" href="../css/task.css">
+  <link rel="stylesheet" href="../css/syntax.css">
+  <link rel="stylesheet" href="../css/animations.css">
+</head>
+<body>
+
+  <div class="scroll-progress"></div>
+
+  <!-- ── Navigation ───────────────────────────────────── -->
+  <nav class="nav" role="navigation">
+    <a href="../index.html" class="nav__logo">
+      <img src="../assets/logo.svg" alt="" width="28" height="28">
+      FIRE 2026
+    </a>
+    <div class="nav__links">
+      <a href="../index.html" class="nav-link">Home</a>
+      <a href="task1.html" class="nav-link">Task 1: ESP</a>
+      <a href="task2.html" class="nav-link">Task 2: Sycophancy</a>
+      <a href="organizers.html" class="nav-link" aria-current="page">Organizers</a>
+      <a href="faq.html" class="nav-link">FAQ</a>
+      <a href="registration.html" class="nav-link btn btn-outline" style="padding: 8px 20px; font-size: 0.7rem;">Register</a>
+    </div>
+    <button class="nav__toggle" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <div class="nav__overlay">
+    <a href="../index.html" class="nav-link">Home</a>
+    <a href="task1.html" class="nav-link">Task 1: ESP</a>
+    <a href="task2.html" class="nav-link">Task 2: Sycophancy</a>
+    <a href="organizers.html" class="nav-link" aria-current="page">Organizers</a>
+    <a href="faq.html" class="nav-link">FAQ</a>
+    <a href="registration.html" class="nav-link">Register</a>
+  </div>
+
+  <div class="sidebar-layout">
+    <!-- ── Sidebar ─────────────────────────────────────── -->
+    <aside class="sidebar">
+      <div class="sidebar__counter">1 / 2 sections</div>
+      <nav class="sidebar__nav">
+        <a href="#team" class="sidebar__link active">Organizing Team</a>
+        <a href="#experience" class="sidebar__link">Prior Experience</a>
+      </nav>
+    </aside>
+
+    <!-- ── Main Content ────────────────────────────────── -->
+    <main class="main-content">
+
+      <!-- Header -->
+      <div class="mb-48" data-reveal="fade-up">
+        <span class="eyebrow">Track: LLM as a Judge?</span>
+        <h1 style="font-size: clamp(2rem, 5vw, 3rem); margin-bottom: 16px;">Organizers</h1>
+        <p class="prose-lg text-muted">
+          Meet the team behind the FIRE 2026 shared track on statute prediction and sycophancy detection.
+        </p>
+      </div>
+
+      <!-- § 01 Organizing Team -->
+      <section id="team" class="task-section" data-reveal="fade-up">
+        <div class="task-section__eyebrow">§ 01 · ORGANIZING TEAM</div>
+        <h2>Organizing Team</h2>
+
+        <div class="organizer-cards mt-24">
+
+          <!-- Organizer 1 -->
+          <div class="organizer-card" data-reveal="fade-up">
+            <div class="organizer-card__header">
+              <div class="organizer-card__avatar">KG</div>
+              <div>
+                <div class="organizer-card__name">Kripabandhu Ghosh</div>
+                <div class="organizer-card__affil">IISER Kolkata, India</div>
+              </div>
+            </div>
+            <a href="mailto:kripaghosh@iiserkol.ac.in" class="organizer-card__email">kripaghosh@iiserkol.ac.in</a>
+            <div class="organizer-card__role">
+              <span class="badge badge--cyan">Track Co-Organizer</span>
+            </div>
+            <p class="organizer-card__bio">
+              Expert in legal informatics and information retrieval, with extensive experience organizing FIRE shared tasks on Indian legal texts.
+            </p>
+          </div>
+
+          <!-- Organizer 2 -->
+          <div class="organizer-card" data-reveal="fade-up">
+            <div class="organizer-card__header">
+              <div class="organizer-card__avatar" style="background: var(--color-violet);">LE</div>
+              <div>
+                <div class="organizer-card__name">Liana Ermakova</div>
+                <div class="organizer-card__affil">Université de Bretagne Occidentale, France</div>
+              </div>
+            </div>
+            <a href="mailto:liana.ermakova@univ-brest.fr" class="organizer-card__email">liana.ermakova@univ-brest.fr</a>
+            <div class="organizer-card__role">
+              <span class="badge badge--violet">Track Co-Organizer</span>
+            </div>
+            <p class="organizer-card__bio">
+              Specialist in natural language processing and summarization, with deep involvement in CLEF evaluation campaigns over many years.
+            </p>
+          </div>
+
+          <!-- Organizer 3 -->
+          <div class="organizer-card" data-reveal="fade-up">
+            <div class="organizer-card__header">
+              <div class="organizer-card__avatar" style="background: var(--color-green);">SS</div>
+              <div>
+                <div class="organizer-card__name">Shuvam Banerji Seal</div>
+                <div class="organizer-card__affil">IISER Kolkata, India</div>
+              </div>
+            </div>
+            <a href="mailto:sbs22ms076@iiserkol.ac.in" class="organizer-card__email">sbs22ms076@iiserkol.ac.in</a>
+            <div class="organizer-card__role">
+              <span class="badge badge--green">Task Organizer</span>
+            </div>
+            <p class="organizer-card__bio">
+              Researcher focused on legal NLP and AI for Indian law, contributing to dataset curation and evaluation methodology.
+            </p>
+          </div>
+
+          <!-- Organizer 4 -->
+          <div class="organizer-card" data-reveal="fade-up">
+            <div class="organizer-card__header">
+              <div class="organizer-card__avatar" style="background: var(--color-pink);">SA</div>
+              <div>
+                <div class="organizer-card__name">Subinay Adhikary</div>
+                <div class="organizer-card__affil">IISER Kolkata, India</div>
+              </div>
+            </div>
+            <a href="mailto:sa21rs094@iiserkol.ac.in" class="organizer-card__email">sa21rs094@iiserkol.ac.in</a>
+            <div class="organizer-card__role">
+              <span class="badge badge--pink">Task Organizer</span>
+            </div>
+            <p class="organizer-card__bio">
+              Researcher working on legal AI and information retrieval, supporting data annotation and baseline development.
+            </p>
+          </div>
+
+          <!-- Organizer 5 -->
+          <div class="organizer-card" data-reveal="fade-up">
+            <div class="organizer-card__header">
+              <div class="organizer-card__avatar" style="background: var(--color-amber);">JK</div>
+              <div>
+                <div class="organizer-card__name">Jaap Kamps</div>
+                <div class="organizer-card__affil">University of Amsterdam, Netherlands</div>
+              </div>
+            </div>
+            <a href="mailto:kamps@uva.nl" class="organizer-card__email">kamps@uva.nl</a>
+            <div class="organizer-card__role">
+              <span class="badge badge--amber">Track Co-Organizer</span>
+            </div>
+            <p class="organizer-card__bio">
+              Veteran information retrieval researcher with decades of experience organizing evaluation campaigns at INEX, TREC, and CLEF.
+            </p>
+          </div>
+
+        </div>
+      </section>
+
+      <hr class="divider">
+
+      <!-- § 02 Prior Experience -->
+      <section id="experience" class="task-section" data-reveal="fade-up">
+        <div class="task-section__eyebrow">§ 02 · PRIOR EXPERIENCE</div>
+        <h2>Prior Experience</h2>
+
+        <p class="prose mb-24">
+          The organizing team brings extensive experience from major information retrieval evaluation campaigns worldwide.
+        </p>
+
+        <div class="experience-list mt-24">
+
+          <!-- Kripabandhu -->
+          <div class="experience-card" data-reveal="fade-up">
+            <div class="experience-card__header">
+              <div class="experience-card__name">Kripabandhu Ghosh</div>
+              <div class="experience-card__affil">IISER Kolkata, India</div>
+            </div>
+            <ul class="experience-card__list">
+              <li>Co-organized <strong>FIRE shared tasks</strong>: IRMiDiS, IRLeD, AILA, AISoMe</li>
+              <li>Part of the <strong>FIRE organizational committee</strong></li>
+            </ul>
+          </div>
+
+          <!-- Liana -->
+          <div class="experience-card" data-reveal="fade-up">
+            <div class="experience-card__header">
+              <div class="experience-card__name">Liana Ermakova</div>
+              <div class="experience-card__affil">Université de Bretagne Occidentale, France</div>
+            </div>
+            <ul class="experience-card__list">
+              <li>Co-organized <strong>CLEF SimpleText Track</strong> (2021–2026)</li>
+              <li>Co-organized <strong>CLEF JOKER Track</strong> (2022–2026)</li>
+              <li>Attended <strong>multiple FIRE editions</strong></li>
+            </ul>
+          </div>
+
+          <!-- Jaap -->
+          <div class="experience-card" data-reveal="fade-up">
+            <div class="experience-card__header">
+              <div class="experience-card__name">Jaap Kamps</div>
+              <div class="experience-card__affil">University of Amsterdam, Netherlands</div>
+            </div>
+            <ul class="experience-card__list">
+              <li>Organized tracks at <strong>INEX</strong> (2007–2014)</li>
+              <li>Organized tracks at <strong>TREC</strong> (2012–2016)</li>
+              <li>Organized tracks at <strong>CLEF</strong> (2005–2006, 2012–2016, 2021–2026)</li>
+              <li>Regular <strong>FIRE attendee</strong></li>
+            </ul>
+          </div>
+
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <!-- ── Footer ──────────────────────────────────────── -->
+  <footer class="footer">
+    <p class="footer__text">
+      FIRE 2026 — Forum for Information Retrieval and Evaluation
+    </p>
+    <div class="footer__links">
+      <a href="https://fire-lab.github.io/" target="_blank" rel="noopener">FIRE 2026</a>
+      <a href="https://www.cikm2026.org/" target="_blank" rel="noopener">CIKM 2026</a>
+      <a href="faq.html">FAQ</a>
+      <a href="registration.html">Register</a>
+    </div>
+  </footer>
+
+  <script src="../js/nav.js"></script>
+  <script src="../js/scroll-reveal.js"></script>
+  <script src="../js/scrollspy.js"></script>
+</body>
+</html>

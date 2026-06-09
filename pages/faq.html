@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FAQ — FIRE 2026</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400;1,500&family=Fira+Code:wght@400&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="../css/base.css">
+  <link rel="stylesheet" href="../css/type.css">
+  <link rel="stylesheet" href="../css/layout.css">
+  <link rel="stylesheet" href="../css/components.css">
+  <link rel="stylesheet" href="../css/task.css">
+  <link rel="stylesheet" href="../css/syntax.css">
+  <link rel="stylesheet" href="../css/animations.css">
+
+  <style>
+    /* ── FAQ Accordion ────────────────────────────────────── */
+    .faq-page {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 120px var(--content-padding) 80px;
+    }
+
+    .faq-header {
+      margin-bottom: 48px;
+    }
+
+    .faq-header .eyebrow {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: var(--type-xs);
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--color-cyan);
+      display: block;
+      margin-bottom: 12px;
+    }
+
+    .faq-header h1 {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      letter-spacing: 0.03em;
+      color: var(--color-text);
+      margin-bottom: 12px;
+    }
+
+    .faq-header p {
+      font-family: var(--font-body);
+      font-size: var(--type-lg);
+      color: var(--color-muted);
+      line-height: 1.7;
+    }
+
+    /* ── Details/Summary Accordion ──────────────────────── */
+    details.faq-item {
+      border: 1px solid var(--color-border);
+      border-radius: 2px;
+      background: var(--color-surface-1);
+      margin-bottom: 12px;
+      overflow: hidden;
+      transition: border-color var(--dur-mid) var(--ease-out-quart);
+    }
+
+    details.faq-item:hover {
+      border-color: var(--color-border-lit);
+    }
+
+    details.faq-item[open] {
+      border-color: var(--color-cyan);
+      box-shadow: 0 0 0 1px rgba(0, 229, 255, 0.1);
+    }
+
+    details.faq-item summary {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 20px 24px;
+      cursor: pointer;
+      font-family: var(--font-body);
+      font-size: var(--type-lg);
+      font-weight: 600;
+      color: var(--color-text);
+      list-style: none;
+      user-select: none;
+      transition: color var(--dur-fast);
+    }
+
+    details.faq-item summary::-webkit-details-marker {
+      display: none;
+    }
+
+    details.faq-item summary::marker {
+      content: '';
+    }
+
+    details.faq-item summary::after {
+      content: '+';
+      font-family: var(--font-mono);
+      font-size: 1.2rem;
+      font-weight: 400;
+      color: var(--color-cyan);
+      flex-shrink: 0;
+      width: 28px;
+      height: 28px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid var(--color-border);
+      border-radius: 2px;
+      transition: transform var(--dur-mid) var(--ease-out-expo),
+                  background var(--dur-mid),
+                  border-color var(--dur-mid);
+    }
+
+    details.faq-item summary:hover::after {
+      border-color: var(--color-cyan);
+    }
+
+    details.faq-item[open] summary::after {
+      content: '\00d7';
+      transform: rotate(0deg);
+      background: rgba(0, 229, 255, 0.1);
+      border-color: var(--color-cyan);
+    }
+
+    details.faq-item summary:hover {
+      color: var(--color-cyan);
+    }
+
+    /* ── Accordion Content Animation ────────────────────── */
+    .faq-content {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height var(--dur-slow) var(--ease-out-expo),
+                  padding var(--dur-slow) var(--ease-out-expo);
+    }
+
+    details.faq-item[open] .faq-content {
+      max-height: 600px;
+    }
+
+    .faq-content__inner {
+      padding: 0 24px 24px;
+      font-family: var(--font-body);
+      font-size: var(--type-base);
+      color: var(--color-muted);
+      line-height: 1.8;
+    }
+
+    .faq-content__inner p {
+      margin-bottom: 12px;
+    }
+
+    .faq-content__inner p:last-child {
+      margin-bottom: 0;
+    }
+
+    .faq-content__inner strong {
+      color: var(--color-text);
+      font-weight: 600;
+    }
+
+    .faq-content__inner code {
+      font-family: var(--font-mono);
+      font-size: 0.85em;
+      background: rgba(0, 229, 255, 0.06);
+      color: var(--color-cyan);
+      padding: 2px 6px;
+      border-radius: 2px;
+      border: 1px solid rgba(0, 229, 255, 0.15);
+    }
+
+    .faq-content__inner a {
+      color: var(--color-cyan);
+      text-decoration: underline;
+      text-underline-offset: 3px;
+      transition: color var(--dur-fast);
+    }
+
+    .faq-content__inner a:hover {
+      color: var(--color-text);
+    }
+
+    /* ── Contact Section ────────────────────────────────── */
+    .faq-contact {
+      margin-top: 48px;
+      padding: 32px;
+      background: var(--color-surface-1);
+      border: 1px solid var(--color-border);
+      border-radius: 2px;
+      text-align: center;
+    }
+
+    .faq-contact h3 {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: var(--type-lg);
+      letter-spacing: 0.03em;
+      color: var(--color-text);
+      margin-bottom: 12px;
+    }
+
+    .faq-contact p {
+      font-family: var(--font-body);
+      font-size: var(--type-base);
+      color: var(--color-muted);
+      line-height: 1.7;
+    }
+
+    .faq-contact a {
+      color: var(--color-cyan);
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+
+    /* ── Divider between FAQ sections ───────────────────── */
+    .faq-divider {
+      width: 60px;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--color-cyan), transparent);
+      margin: 32px auto;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="scroll-progress"></div>
+
+  <!-- ── Navigation ───────────────────────────────────── -->
+  <nav class="nav" role="navigation">
+    <a href="../index.html" class="nav__logo">
+      <img src="../assets/logo.svg" alt="" width="28" height="28">
+      FIRE 2026
+    </a>
+    <div class="nav__links">
+      <a href="../index.html" class="nav-link">Home</a>
+      <a href="task1.html" class="nav-link">Task 1: ESP</a>
+      <a href="task2.html" class="nav-link">Task 2: Sycophancy</a>
+      <a href="faq.html" class="nav-link" aria-current="page">FAQ</a>
+      <a href="registration.html" class="nav-link btn btn-outline" style="padding: 8px 20px; font-size: 0.7rem;">Register</a>
+    </div>
+    <button class="nav__toggle" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <div class="nav__overlay">
+    <a href="../index.html" class="nav-link">Home</a>
+    <a href="task1.html" class="nav-link">Task 1: ESP</a>
+    <a href="task2.html" class="nav-link">Task 2: Sycophancy</a>
+    <a href="faq.html" class="nav-link" aria-current="page">FAQ</a>
+    <a href="registration.html" class="nav-link">Register</a>
+  </div>
+
+  <!-- ── Main Content ────────────────────────────────── -->
+  <div class="faq-page">
+
+    <!-- Header -->
+    <div class="faq-header">
+      <span class="eyebrow">Frequently Asked Questions</span>
+      <h1>FAQ</h1>
+      <p>
+        Common questions about the shared track: <em>LLM as a Judge?: From Statute Prediction to Sycophancy Detection in Law</em>
+      </p>
+    </div>
+
+    <div class="faq-divider"></div>
+
+    <!-- FAQ Items -->
+
+    <details class="faq-item">
+      <summary>What is the track about?</summary>
+      <div class="faq-content">
+        <div class="faq-content__inner">
+          <p>
+            This shared track explores the intersection of <strong>legal AI</strong> and <strong>large language models</strong> through two complementary tasks:
+          </p>
+          <p>
+            <strong>Task 1 — Explainable Statute Prediction (ESP):</strong> Given the factual description of an Indian Supreme Court case, predict which sections of the Indian Penal Code (IPC) are applicable, locate the exact sentences that trigger each section, and provide legal reasoning connecting facts to the statute.
+          </p>
+          <p>
+            <strong>Task 2 — Sycophancy Detection in Legal LLMs:</strong> Evaluate whether LLM-based judges exhibit sycophantic behavior — shifting their legal rulings based on suggestive prompts rather than the merits of a case.
+          </p>
+          <p>
+            The track is part of <strong>FIRE 2026</strong> (Forum for Information Retrieval and Evaluation), co-located with <strong>CIKM 2026</strong>.
+          </p>
+        </div>
+      </div>
+    </details>
+
+    <details class="faq-item">
+      <summary>What data format is used?</summary>
+      <div class="faq-content">
+        <div class="faq-content__inner">
+          <p>
+            Both tasks use <strong>JSONL</strong> (JSON Lines) format, where each line represents a single data instance.
+          </p>
+          <p>
+            For <strong>Task 1</strong>, each training sample contains <code>doc_id</code>, <code>doc_url</code>, <code>fact</code> (the full case description), and <code>statute</code> (a list of applicable IPC sections with <code>exact_fact</code> sentences and <code>reasoning_trace</code> fields). The test data provides only <code>doc_id</code>, <code>doc_url</code>, and <code>fact</code>.
+          </p>
+          <p>
+            For <strong>Task 2</strong>, the data consists of legal case scenarios paired with suggestive and neutral prompts. See the respective task pages for full schema details.
+          </p>
+        </div>
+      </div>
+    </details>
+
+    <details class="faq-item">
+      <summary>How do I submit my predictions?</summary>
+      <div class="faq-content">
+        <div class="faq-content__inner">
+          <p>
+            Submissions are made through <strong>CodaBench</strong> (CodaLab v2). Each team submits a single JSONL file per task.
+          </p>
+          <p>
+            For <strong>Task 1</strong>, each line in your submission must contain <code>doc_id</code> and <code>statute</code> — a list of predictions, each with <code>section</code>, <code>exact_fact</code>, and <code>reasoning_trace</code> fields.
+          </p>
+          <p>
+            For <strong>Task 2</strong>, follow the submission format specified on the Task 2 page. Only <strong>one run per team</strong> is allowed per task.
+          </p>
+          <p>
+            The scoring scripts will be released alongside the test data, and the leaderboard updates automatically after each submission.
+          </p>
+        </div>
+      </div>
+    </details>
+
+    <details class="faq-item">
+      <summary>What evaluation metrics are used?</summary>
+      <div class="faq-content">
+        <div class="faq-content__inner">
+          <p>
+            <strong>Task 1</strong> uses a weighted composite score comprising:
+          </p>
+          <p>
+            <strong>Macro F1 (35%):</strong> Exact match on predicted section labels vs. gold standard. <strong>ROUGE-L (25%):</strong> Longest common subsequence similarity between predicted and gold reasoning traces. <strong>BLEU (20%):</strong> Sentence-level BLEU score for reasoning texts. <strong>Recall@3 (10%):</strong> Whether gold labels appear in the top-3 predictions. <strong>Legal Semantic Score (10%):</strong> Cosine similarity of reasoning embeddings from a undisclosed legal-domain language model.
+          </p>
+          <p>
+            <strong>Task 2</strong> evaluates sycophancy detection using accuracy and consistency metrics as described on the Task 2 page.
+          </p>
+          <p>
+            <em>Note: Metrics and weights are tentative and may be updated before the test data release.</em>
+          </p>
+        </div>
+      </div>
+    </details>
+
+    <details class="faq-item">
+      <summary>Can I participate in both tasks?</summary>
+      <div class="faq-content">
+        <div class="faq-content__inner">
+          <p>
+            <strong>Yes.</strong> You are welcome to participate in one or both tasks. Each task is evaluated independently with its own leaderboard and submission process.
+          </p>
+          <p>
+            You may register as a single team and submit runs for both Task 1 and Task 2, or focus on just one — there is no restriction.
+          </p>
+        </div>
+      </div>
+    </details>
+
+    <details class="faq-item">
+      <summary>Is there a participant limit?</summary>
+      <div class="faq-content">
+        <div class="faq-content__inner">
+          <p>
+            <strong>No.</strong> There is no cap on the number of participating teams or individuals. The track is open to all researchers, students, and practitioners.
+          </p>
+          <p>
+            We encourage broad participation from the legal AI, NLP, and information retrieval communities.
+          </p>
+        </div>
+      </div>
+    </details>
+
+    <details class="faq-item">
+      <summary>When will results be announced?</summary>
+      <div class="faq-content">
+        <div class="faq-content__inner">
+          <p>
+            Evaluation results will be declared at the <strong>end of July 2026</strong>, shortly after the test data submission deadline.
+          </p>
+          <p>
+            <strong>Working notes</strong> are due by <strong>15 August 2026</strong>, and <strong>camera-ready copies</strong> by the <strong>end of September 2026</strong>. The final results and rankings will be presented at the FIRE 2026 workshop, co-located with CIKM 2026.
+          </p>
+        </div>
+      </div>
+    </details>
+
+    <details class="faq-item">
+      <summary>Who should I contact for questions?</summary>
+      <div class="faq-content">
+        <div class="faq-content__inner">
+          <p>
+            For any questions about the track, please reach out to the organizers:
+          </p>
+          <p>
+            <strong>Kripabandhu Ghosh</strong> — <a href="mailto:kripaghosh@iiserkol.ac.in">kripaghosh@iiserkol.ac.in</a> (IISER Kolkata, India)
+          </p>
+          <p>
+            <strong>Liana Ermakova</strong> — <a href="mailto:liana.ermakova@univ-brest.fr">liana.ermakova@univ-brest.fr</a> (Université de Bretagne Occidentale, France)
+          </p>
+          <p>
+            <strong>Shuvam Banerji Seal</strong> — <a href="mailto:sbs22ms076@iiserkol.ac.in">sbs22ms076@iiserkol.ac.in</a> (IISER Kolkata, India)
+          </p>
+          <p>
+            <strong>Subinay Adhikary</strong> — <a href="mailto:sa21rs094@iiserkol.ac.in">sa21rs094@iiserkol.ac.in</a> (IISER Kolkata, India)
+          </p>
+          <p>
+            <strong>Jaap Kamps</strong> — <a href="mailto:kamps@uva.nl">kamps@uva.nl</a> (University of Amsterdam, Netherlands)
+          </p>
+        </div>
+      </div>
+    </details>
+
+    <div class="faq-divider" style="margin-top: 40px;"></div>
+
+    <!-- Contact card -->
+    <div class="faq-contact">
+      <h3>Still Have Questions?</h3>
+      <p>
+        Feel free to email any of the organizers listed above, or visit the
+        <a href="registration.html">registration page</a> for more details about participating.
+      </p>
+    </div>
+
+  </div>
+
+  <!-- ── Footer ──────────────────────────────────────── -->
+  <footer class="footer">
+    <p class="footer__text">
+      FIRE 2026 — Forum for Information Retrieval and Evaluation
+    </p>
+    <div class="footer__links">
+      <a href="https://fire-lab.github.io/" target="_blank" rel="noopener">FIRE 2026</a>
+      <a href="https://www.cikm2026.org/" target="_blank" rel="noopener">CIKM 2026</a>
+      <a href="faq.html">FAQ</a>
+      <a href="registration.html">Register</a>
+    </div>
+  </footer>
+
+  <script src="../js/nav.js"></script>
+  <script src="../js/scroll-reveal.js"></script>
+</body>
+</html>

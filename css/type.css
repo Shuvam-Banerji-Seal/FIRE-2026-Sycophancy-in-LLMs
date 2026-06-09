@@ -1,0 +1,140 @@
+/* type.css — Full typographic scale, prose classes, .eyebrow */
+
+@layer base {
+  /* ── Type Scale ──────────────────────────────────────── */
+  :root {
+    --type-xs:   0.75rem;
+    --type-sm:   0.875rem;
+    --type-base: 1.1rem;
+    --type-md:   1.25rem;
+    --type-lg:   1.5rem;
+    --type-xl:   2rem;
+    --type-2xl:  3rem;
+    --type-3xl:  4.5rem;
+    --type-hero: clamp(3.5rem, 8vw, 7rem);
+  }
+
+  /* ── Headings ────────────────────────────────────────── */
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-display);
+    color: #ffffff;
+    line-height: 1.2;
+  }
+
+  h1 {
+    font-size: var(--type-hero);
+    font-weight: 900;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  h2 {
+    font-size: var(--type-2xl);
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    margin-bottom: 1rem;
+  }
+
+  h3 {
+    font-size: var(--type-xl);
+    font-weight: 700;
+    letter-spacing: 0.03em;
+    margin-bottom: 0.75rem;
+  }
+
+  h4 {
+    font-size: var(--type-lg);
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+  }
+
+  /* ── Eyebrow ─────────────────────────────────────────── */
+  .eyebrow {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: var(--type-xs);
+    letter-spacing: 0.4em;
+    text-transform: uppercase;
+    color: var(--color-cyan);
+    display: block;
+    margin-bottom: 1rem;
+  }
+
+  /* ── Prose ───────────────────────────────────────────── */
+  .prose {
+    font-family: var(--font-body);
+    font-size: var(--type-base);
+    line-height: 1.75;
+    color: var(--color-text);
+    max-width: 72ch;
+  }
+
+  .prose em {
+    font-style: italic;
+    color: var(--color-muted);
+  }
+
+  .prose strong {
+    font-weight: 600;
+    color: #ffffff;
+  }
+
+  .prose-lg {
+    font-size: var(--type-md);
+    line-height: 1.7;
+  }
+
+  .prose-sm {
+    font-size: var(--type-sm);
+    line-height: 1.6;
+    color: var(--color-muted);
+  }
+
+  /* ── Pull Quote ──────────────────────────────────────── */
+  .pull-quote {
+    font-family: var(--font-body);
+    font-size: var(--type-2xl);
+    font-style: italic;
+    font-weight: 300;
+    line-height: 1.4;
+    color: var(--color-text);
+    border-left: 2px solid var(--color-cyan);
+    padding-left: 2rem;
+    margin: 2rem 0;
+  }
+
+  /* ── Code / Mono ─────────────────────────────────────── */
+  code, kbd, samp {
+    font-family: var(--font-mono);
+    font-size: 0.9em;
+  }
+
+  code {
+    background: var(--color-surface-1);
+    border: 1px solid var(--color-border);
+    border-radius: 2px;
+    padding: 0.15em 0.4em;
+    color: var(--color-cyan);
+  }
+
+  pre {
+    font-family: var(--font-mono);
+    font-size: var(--type-sm);
+    line-height: 1.8;
+    background: #04040a;
+    border: 1px solid var(--color-border);
+    border-left: 3px solid var(--color-cyan);
+    border-radius: 2px;
+    padding: 24px 28px;
+    overflow-x: auto;
+    color: var(--color-text);
+  }
+
+  pre code {
+    background: none;
+    border: none;
+    padding: 0;
+    font-size: inherit;
+    color: inherit;
+  }
+}

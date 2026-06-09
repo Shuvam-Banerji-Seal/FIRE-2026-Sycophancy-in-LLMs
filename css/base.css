@@ -1,0 +1,162 @@
+/* base.css — Custom properties, @layer order, resets, @property declarations */
+
+@layer reset, tokens, base, layout, components, pages, utilities, animations;
+
+/* ── Reset ────────────────────────────────────────────── */
+@layer reset {
+  *, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  html {
+    -webkit-text-size-adjust: 100%;
+    -moz-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+    scroll-behavior: smooth;
+  }
+
+  body {
+    min-height: 100vh;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  img, picture, video, canvas, svg {
+    display: block;
+    max-width: 100%;
+  }
+
+  input, button, textarea, select {
+    font: inherit;
+  }
+
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  ul, ol {
+    list-style: none;
+  }
+
+  table {
+    border-collapse: collapse;
+  }
+}
+
+/* ── Custom Properties ────────────────────────────────── */
+@layer tokens {
+  :root {
+    /* ── Fonts ─────────────────────────── */
+    --font-display:  'Cinzel Decorative', serif;
+    --font-body:     'Cormorant Garamond', serif;
+    --font-mono:     'Fira Code', 'JetBrains Mono', monospace;
+
+    /* ── Palette ────────────────────────── */
+    --color-void:        #000000;
+    --color-abyss:       #070709;
+    --color-surface-1:   #0d0d10;
+    --color-surface-2:   #13131a;
+    --color-border:      #1e1e28;
+    --color-border-lit:  #2e2e3e;
+
+    --color-text:        #e4e4f0;
+    --color-muted:       #7070a0;
+    --color-ghost:       #3a3a5a;
+
+    --color-cyan:        #00e5ff;
+    --color-pink:        #ff2d6b;
+    --color-green:       #00ff99;
+    --color-amber:       #ffb347;
+    --color-violet:      #9b6dff;
+
+    /* ── Glow variants ─────────────────── */
+    --glow-cyan:  0 0 24px rgba(0, 229, 255, 0.3), 0 0 48px rgba(0, 229, 255, 0.1);
+    --glow-pink:  0 0 24px rgba(255, 45, 107, 0.3), 0 0 48px rgba(255, 45, 107, 0.1);
+
+    /* ── Motion tokens ─────────────────── */
+    --ease-out-expo:   cubic-bezier(0.16, 1, 0.3, 1);
+    --ease-out-quart:  cubic-bezier(0.25, 1, 0.5, 1);
+    --ease-in-expo:    cubic-bezier(0.7, 0, 0.84, 0);
+    --ease-spring:     cubic-bezier(0.34, 1.56, 0.64, 1);
+    --ease-cinematic:  cubic-bezier(0.77, 0, 0.175, 1);
+
+    --dur-instant:  80ms;
+    --dur-fast:     160ms;
+    --dur-mid:      320ms;
+    --dur-slow:     600ms;
+    --dur-cinema:   1200ms;
+
+    /* ── Layout ─────────────────────────── */
+    --max-width:        1200px;
+    --sidebar-width:    260px;
+    --section-gap:      clamp(80px, 12vw, 160px);
+    --content-padding:  clamp(16px, 5vw, 64px);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    :root {
+      --dur-instant: 0ms;
+      --dur-fast:    0ms;
+      --dur-mid:     0ms;
+      --dur-slow:    0ms;
+      --dur-cinema:  0ms;
+    }
+  }
+}
+
+/* ── Base ─────────────────────────────────────────────── */
+@layer base {
+  body {
+    font-family: var(--font-body);
+    font-size: 1.1rem;
+    line-height: 1.75;
+    color: var(--color-text);
+    background-color: var(--color-abyss);
+  }
+
+  ::selection {
+    background: rgba(0, 229, 255, 0.2);
+    color: #ffffff;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-cyan);
+    outline-offset: 2px;
+  }
+
+  ::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: var(--color-abyss);
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: var(--color-border-lit);
+    border-radius: 3px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--color-ghost);
+  }
+}
+
+/* ── Animated @property ───────────────────────────────── */
+@layer animations {
+  @property --angle {
+    syntax: '<angle>';
+    initial-value: 0deg;
+    inherits: false;
+  }
+
+  @property --glow-opacity {
+    syntax: '<number>';
+    initial-value: 0;
+    inherits: false;
+  }
+}

@@ -3,67 +3,378 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Sycophancy Loader</title>
-  <link rel="stylesheet" href="css/loader.css">
-  <link rel="stylesheet" href="css/logo.css">
-  <link rel="stylesheet" href="css/styles.css">
+  <title>FIRE 2026 — LLM as a Judge?</title>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400;1,500&family=Fira+Code:wght@400&display=swap" rel="stylesheet">
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/type.css">
+  <link rel="stylesheet" href="css/layout.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/landing.css">
+  <link rel="stylesheet" href="css/animations.css">
 </head>
 <body>
 
-  <!-- ── Loader overlay ── -->
-  <div id="loader-overlay">
-    <div data-logo="loader"></div>
+  <!-- ── Scroll Progress ──────────────────────────────── -->
+  <div class="scroll-progress"></div>
 
-    <h2>Same LLM · Same Case · Opposite Answers</h2>
+  <!-- ── Navigation ───────────────────────────────────── -->
+  <nav class="nav" role="navigation">
+    <a href="index.html" class="nav__logo">
+      <img src="assets/logo.svg" alt="" width="28" height="28">
+      FIRE 2026
+    </a>
 
-    <div class="chats">
-      <div class="chat-box">
-        <div class="chat-header">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#333" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M12 2C6.5 2 2 6.5 2 12c0 1.8.5 3.5 1.3 5L2 22l5-1.3c1.5.8 3.2 1.3 5 1.3 5.5 0 10-4.5 10-10S17.5 2 12 2z"/>
-          </svg>
-          Chat A
-          <span class="tag">SESS 01</span>
-        </div>
-        <div class="chat-body" id="body1"></div>
-      </div>
-      <div class="chat-box">
-        <div class="chat-header">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#333" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M12 2C6.5 2 2 6.5 2 12c0 1.8.5 3.5 1.3 5L2 22l5-1.3c1.5.8 3.2 1.3 5 1.3 5.5 0 10-4.5 10-10S17.5 2 12 2z"/>
-          </svg>
-          Chat B
-          <span class="tag">SESS 02</span>
-        </div>
-        <div class="chat-body" id="body2"></div>
-      </div>
+    <div class="nav__links">
+      <a href="index.html" class="nav-link" aria-current="page">Home</a>
+      <a href="pages/task1.html" class="nav-link">Task 1: ESP</a>
+      <a href="pages/task2.html" class="nav-link">Task 2: Sycophancy</a>
+      <a href="pages/faq.html" class="nav-link">FAQ</a>
+      <a href="pages/registration.html" class="nav-link btn btn-outline" style="padding: 8px 20px; font-size: 0.7rem;">Register</a>
     </div>
 
-    <div class="bottom-text" id="bottomText">
-      The model agreed with both — classic sycophancy.
+    <button class="nav__toggle" aria-label="Toggle menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </nav>
+
+  <!-- Mobile overlay -->
+  <div class="nav__overlay">
+    <a href="index.html" class="nav-link" aria-current="page">Home</a>
+    <a href="pages/task1.html" class="nav-link">Task 1: ESP</a>
+    <a href="pages/task2.html" class="nav-link">Task 2: Sycophancy</a>
+    <a href="pages/faq.html" class="nav-link">FAQ</a>
+    <a href="pages/registration.html" class="nav-link">Register</a>
+  </div>
+
+  <main>
+
+    <!-- ═══════════════════════════════════════════════════ -->
+    <!-- HERO                                                -->
+    <!-- ═══════════════════════════════════════════════════ -->
+    <section class="hero">
+      <div class="hero__eyebrow">FIRE 2026 · TRACK</div>
+      <div class="hero__rule"></div>
+      <h1 class="hero__title">
+        <!-- Characters will be wrapped by hero-title.js or inline -->
+        <span class="char" style="animation-delay: 700ms">E</span><span class="char" style="animation-delay: 730ms">X</span><span class="char" style="animation-delay: 760ms">P</span><span class="char" style="animation-delay: 790ms">L</span><span class="char" style="animation-delay: 820ms">A</span><span class="char" style="animation-delay: 850ms">I</span><span class="char" style="animation-delay: 880ms">N</span><span class="char" style="animation-delay: 910ms">A</span><span class="char" style="animation-delay: 940ms">B</span><span class="char" style="animation-delay: 970ms">L</span><span class="char" style="animation-delay: 1000ms">E</span>
+        <span class="line-break"></span>
+        <span class="char" style="animation-delay: 1060ms">A</span><span class="char" style="animation-delay: 1090ms">I</span>
+        <span class="line-break"></span>
+        <span class="char" style="animation-delay: 1180ms">I</span><span class="char" style="animation-delay: 1210ms">N</span>
+        <span class="line-break"></span>
+        <span class="char" style="animation-delay: 1300ms">L</span><span class="char" style="animation-delay: 1330ms">E</span><span class="char" style="animation-delay: 1360ms">G</span><span class="char" style="animation-delay: 1390ms">A</span><span class="char" style="animation-delay: 1420ms">L</span>
+        <span class="line-break"></span>
+        <span class="char" style="animation-delay: 1520ms">R</span><span class="char" style="animation-delay: 1550ms">E</span><span class="char" style="animation-delay: 1580ms">A</span><span class="char" style="animation-delay: 1610ms">S</span><span class="char" style="animation-delay: 1640ms">O</span><span class="char" style="animation-delay: 1670ms">N</span><span class="char" style="animation-delay: 1700ms">I</span><span class="char" style="animation-delay: 1730ms">N</span><span class="char" style="animation-delay: 1760ms">G</span>
+      </h1>
+      <p class="hero__subtitle">
+        From Statute Prediction to Sycophancy Detection — evaluating whether LLMs can be trusted to reason about law.
+      </p>
+      <div class="hero__cta">
+        <a href="pages/task1.html" class="btn btn-primary">
+          Explore the Tasks
+          <span class="btn__arrow">→</span>
+        </a>
+      </div>
+      <div class="hero__scroll">
+        <div class="hero__scroll-line"></div>
+        scroll
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════ -->
+    <!-- THE PROBLEM                                         -->
+    <!-- ═══════════════════════════════════════════════════ -->
+    <section class="section section-problem">
+      <div class="container">
+        <div data-reveal="fade-left">
+          <p class="pull-quote">
+            "Law aspires to reason.<br>
+            AI aspires to pattern.<br>
+            This track asks if they can meet."
+          </p>
+        </div>
+        <div data-reveal="fade-right" data-stagger="120">
+          <p class="prose mb-24">
+            AI and Law have rapidly grown as an area of research worldwide, across the judiciary. Researchers across multiple legal systems, tasks, and languages have explored the applicability of LLMs to this field.
+          </p>
+          <p class="prose mb-24">
+            Nonetheless, the AI prediction/recommendation system is perhaps inconsequential unless the legal experts find it useful, and, more importantly, <strong>interpretable and reliable</strong>.
+          </p>
+          <p class="prose">
+            Our track provides a testbed for evaluating the efficacy of LLMs in generating trustworthy and robust solutions to important legal problems — where the stakes are not abstract benchmarks, but the integrity of legal reasoning itself.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════ -->
+    <!-- TWO TASKS                                           -->
+    <!-- ═══════════════════════════════════════════════════ -->
+    <section class="section section-tasks">
+      <div class="container">
+        <div class="section__header">
+          <span class="eyebrow" data-reveal="fade-up">The Challenge</span>
+          <h2 data-reveal="fade-up">Two Tasks</h2>
+        </div>
+
+        <div class="grid grid--2" data-stagger="120">
+          <!-- Task 1 -->
+          <div class="task-card card" data-reveal="fade-up">
+            <span class="card__badge">TASK 01</span>
+            <h3 class="card__title">Explainable Statute Prediction</h3>
+            <p class="card__desc">
+              Given the factual description of an Indian Supreme Court case, predict which IPC sections apply, locate the exact triggering sentences, and explain the legal reasoning connecting each fact to its statute.
+            </p>
+            <div class="task-card__badges">
+              <span class="badge badge--cyan">Macro F1</span>
+              <span class="badge badge--cyan">ROUGE-L</span>
+              <span class="badge badge--cyan">BLEU</span>
+            </div>
+            <div class="mt-24">
+              <a href="pages/task1.html" class="card__link">
+                Explore Task <span class="btn__arrow">→</span>
+              </a>
+            </div>
+          </div>
+
+          <!-- Task 2 -->
+          <div class="task-card card" data-reveal="fade-up">
+            <span class="card__badge">TASK 02</span>
+            <h3 class="card__title">Sycophancy Detection</h3>
+            <p class="card__desc">
+              Detect sycophantic behavior in LLMs — the tendency to echo user beliefs regardless of truth. Given a legal query with clear outcome expectations, predict whether the model will agree or disagree with the user.
+            </p>
+            <div class="task-card__badges">
+              <span class="badge badge--violet">F1 Score</span>
+              <span class="badge badge--violet">Cross-Jurisdictional</span>
+            </div>
+            <div class="mt-24">
+              <a href="pages/task2.html" class="card__link">
+                Explore Task <span class="btn__arrow">→</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════ -->
+    <!-- WHY IT MATTERS                                       -->
+    <!-- ═══════════════════════════════════════════════════ -->
+    <section class="section section-stats">
+      <div class="container">
+        <div class="section__header">
+          <span class="eyebrow" data-reveal="fade-up">Core Pillars</span>
+          <h2 data-reveal="fade-up">Why It Matters</h2>
+        </div>
+
+        <div class="grid grid--3" data-stagger="100">
+          <div class="stat-card" data-reveal="fade-up">
+            <div class="stat-card__number" data-count="2" data-suffix="">0</div>
+            <div class="stat-card__label">Tasks</div>
+            <p class="stat-card__desc">
+              statute prediction with explanations and sycophancy detection across legal systems
+            </p>
+          </div>
+          <div class="stat-card" data-reveal="fade-up">
+            <div class="stat-card__number" data-count="5" data-suffix="">0</div>
+            <div class="stat-card__label">Evaluation Metrics</div>
+            <p class="stat-card__desc">
+              Macro F1, ROUGE-L, BLEU, Recall@3, and Legal Semantic Score
+            </p>
+          </div>
+          <div class="stat-card" data-reveal="fade-up">
+            <div class="stat-card__number" data-count="2" data-suffix="">0</div>
+            <div class="stat-card__label">Jurisdictions</div>
+            <p class="stat-card__desc">
+              Indian Supreme Court judgments and U.S. Supreme Court cases
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════ -->
+    <!-- TIMELINE                                            -->
+    <!-- ═══════════════════════════════════════════════════ -->
+    <section class="section section-timeline">
+      <div class="container">
+        <div class="section__header">
+          <span class="eyebrow" data-reveal="fade-up">Schedule</span>
+          <h2 data-reveal="fade-up">Timeline</h2>
+        </div>
+
+        <div class="timeline">
+          <div class="timeline__line"></div>
+          <div class="timeline__line-fill"></div>
+
+          <div class="timeline__item past" data-reveal="fade-up">
+            <div class="timeline__dot"></div>
+            <div>
+              <div class="timeline__date">15 May 2026</div>
+              <div class="timeline__event">Track website opens, training data released</div>
+            </div>
+          </div>
+
+          <div class="timeline__item past" data-reveal="fade-up">
+            <div class="timeline__dot"></div>
+            <div>
+              <div class="timeline__date">15 June 2026</div>
+              <div class="timeline__event">Training data release (500 cases)</div>
+            </div>
+          </div>
+
+          <div class="timeline__item active" data-reveal="fade-up">
+            <div class="timeline__dot"></div>
+            <div>
+              <div class="timeline__date">20 July 2026</div>
+              <div class="timeline__event">Test data release (100 cases)</div>
+            </div>
+          </div>
+
+          <div class="timeline__item future" data-reveal="fade-up">
+            <div class="timeline__dot"></div>
+            <div>
+              <div class="timeline__date">30 June 2026</div>
+              <div class="timeline__event">Run submission deadline</div>
+            </div>
+          </div>
+
+          <div class="timeline__item future" data-reveal="fade-up">
+            <div class="timeline__dot"></div>
+            <div>
+              <div class="timeline__date">15 July 2026</div>
+              <div class="timeline__event">Track results declared</div>
+            </div>
+          </div>
+
+          <div class="timeline__item future" data-reveal="fade-up">
+            <div class="timeline__dot"></div>
+            <div>
+              <div class="timeline__date">30 August 2026</div>
+              <div class="timeline__event">Working notes due</div>
+            </div>
+          </div>
+
+          <div class="timeline__item future" data-reveal="fade-up">
+            <div class="timeline__dot"></div>
+            <div>
+              <div class="timeline__date">30 September 2026</div>
+              <div class="timeline__event">Camera-ready copies of working notes and overview paper</div>
+            </div>
+          </div>
+
+          <div class="timeline__item future" data-reveal="fade-up">
+            <div class="timeline__dot"></div>
+            <div>
+              <div class="timeline__date">December 2026</div>
+              <div class="timeline__event">FIRE 2026 Conference</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════ -->
+    <!-- ORGANIZERS                                           -->
+    <!-- ═══════════════════════════════════════════════════ -->
+    <section class="section section-organizers">
+      <div class="container">
+        <div class="section__header">
+          <span class="eyebrow" data-reveal="fade-up">The Team</span>
+          <h2 data-reveal="fade-up">Organizers</h2>
+        </div>
+
+        <div class="organizer-grid" data-stagger="80">
+          <div class="organizer-card" data-reveal="fade-up">
+            <div class="organizer-card__name">Kripabandhu Ghosh</div>
+            <div class="organizer-card__affiliation">IISER Kolkata, India</div>
+            <div class="organizer-card__role">Track Co-organizer</div>
+          </div>
+          <div class="organizer-card" data-reveal="fade-up">
+            <div class="organizer-card__name">Liana Ermakova</div>
+            <div class="organizer-card__affiliation">Université de Bretagne Occidentale, France</div>
+            <div class="organizer-card__role">Track Co-organizer</div>
+          </div>
+          <div class="organizer-card" data-reveal="fade-up">
+            <div class="organizer-card__name">Shuvam Banerji Seal</div>
+            <div class="organizer-card__affiliation">IISER Kolkata, India</div>
+            <div class="organizer-card__role">Track Co-organizer</div>
+          </div>
+          <div class="organizer-card" data-reveal="fade-up">
+            <div class="organizer-card__name">Subinay Adhikary</div>
+            <div class="organizer-card__affiliation">IISER Kolkata, India</div>
+            <div class="organizer-card__role">Track Co-organizer</div>
+          </div>
+          <div class="organizer-card" data-reveal="fade-up">
+            <div class="organizer-card__name">Jaap Kamps</div>
+            <div class="organizer-card__affiliation">University of Amsterdam, Netherlands</div>
+            <div class="organizer-card__role">Track Co-organizer</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════ -->
+    <!-- REGISTER                                            -->
+    <!-- ═══════════════════════════════════════════════════ -->
+    <section class="section section-register">
+      <div class="container container--narrow">
+        <span class="eyebrow" data-reveal="fade-up">Join the Challenge</span>
+        <h2 data-reveal="fade-up">Register Now</h2>
+        <p class="prose" data-reveal="fade-up">
+          Participate in the shared task at the intersection of AI and Law. Open to researchers, practitioners, and students worldwide.
+        </p>
+        <div data-reveal="fade-up" data-reveal-delay="200">
+          <a href="pages/registration.html" class="btn btn-primary" style="font-size: 0.85rem; padding: 16px 48px;">
+            Register on CodaBench
+          </a>
+        </div>
+        <p class="register__coming-soon mt-16" data-reveal="fade-up">
+          CodaBench competition page coming soon
+        </p>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ── Footer ──────────────────────────────────────── -->
+  <footer class="footer">
+    <p class="footer__text">
+      FIRE 2026 — Forum for Information Retrieval and Evaluation
+    </p>
+    <div class="footer__links">
+      <a href="https://fire-lab.github.io/" target="_blank" rel="noopener">FIRE 2026</a>
+      <a href="https://www.cikm2026.org/" target="_blank" rel="noopener">CIKM 2026</a>
+      <a href="pages/faq.html">FAQ</a>
+      <a href="pages/organizers.html">Contact</a>
     </div>
+  </footer>
 
-    <div class="pretext-stats" id="pretext-stats"></div>
-  </div>
+  <!-- ── Scripts ─────────────────────────────────────── -->
+  <script src="js/nav.js"></script>
+  <script src="js/scroll-reveal.js"></script>
+  <script src="js/tilt.js"></script>
+  <script src="js/counter.js"></script>
+  <script src="js/timeline.js"></script>
+  <script src="js/transitions.js"></script>
 
-  <!-- ── Main page content (hidden until loader finishes) ── -->
-  <div id="main-content" class="hidden">
-    <div data-logo="main"></div>
-
-    <h1>Welcome to My Website</h1>
-
-    <nav>
-      <ul>
-        <li><a href="index.html">Home</a></li>
-        <li><a href="pages/loader.html">Sycophancy Demo</a></li>
-        <li><a href="pretext-demo.html">Pretext Demo</a></li>
-        <li><a href="pages/about.html">About</a></li>
-      </ul>
-    </nav>
-  </div>
-
-  <script src="js/logo.js"></script>
-  <script type="module" src="js/loader.js"></script>
-  <script src="js/main.js"></script>
+  <!-- Hero animation trigger -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // Trigger hero animation sequence
+      requestAnimationFrame(() => {
+        document.querySelector('.hero').classList.add('hero--animate')
+      })
+    })
+  </script>
 </body>
 </html>

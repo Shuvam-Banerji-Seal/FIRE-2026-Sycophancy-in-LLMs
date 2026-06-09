@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Task 1: Explainable Statute Prediction — FIRE 2026</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400;1,500&family=Fira+Code:wght@400&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="../css/base.css">
+  <link rel="stylesheet" href="../css/type.css">
+  <link rel="stylesheet" href="../css/layout.css">
+  <link rel="stylesheet" href="../css/components.css">
+  <link rel="stylesheet" href="../css/task.css">
+  <link rel="stylesheet" href="../css/syntax.css">
+  <link rel="stylesheet" href="../css/animations.css">
+</head>
+<body>
+
+  <div class="scroll-progress"></div>
+
+  <!-- ── Navigation ───────────────────────────────────── -->
+  <nav class="nav" role="navigation">
+    <a href="../index.html" class="nav__logo">
+      <img src="../assets/logo.svg" alt="" width="28" height="28">
+      FIRE 2026
+    </a>
+    <div class="nav__links">
+      <a href="../index.html" class="nav-link">Home</a>
+      <a href="task1.html" class="nav-link" aria-current="page">Task 1: ESP</a>
+      <a href="task2.html" class="nav-link">Task 2: Sycophancy</a>
+      <a href="faq.html" class="nav-link">FAQ</a>
+      <a href="registration.html" class="nav-link btn btn-outline" style="padding: 8px 20px; font-size: 0.7rem;">Register</a>
+    </div>
+    <button class="nav__toggle" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <div class="nav__overlay">
+    <a href="../index.html" class="nav-link">Home</a>
+    <a href="task1.html" class="nav-link" aria-current="page">Task 1: ESP</a>
+    <a href="task2.html" class="nav-link">Task 2: Sycophancy</a>
+    <a href="faq.html" class="nav-link">FAQ</a>
+    <a href="registration.html" class="nav-link">Register</a>
+  </div>
+
+  <div class="sidebar-layout">
+    <!-- ── Sidebar ─────────────────────────────────────── -->
+    <aside class="sidebar">
+      <div class="sidebar__counter">1 / 9 sections</div>
+      <nav class="sidebar__nav">
+        <a href="#overview" class="sidebar__link active">Overview</a>
+        <a href="#description" class="sidebar__link">Task Description</a>
+        <a href="#scope" class="sidebar__link">Jurisdiction & Scope</a>
+        <a href="#data-training" class="sidebar__link">Training Data</a>
+        <a href="#data-test" class="sidebar__link">Test Data</a>
+        <a href="#submission" class="sidebar__link">Submission Format</a>
+        <a href="#evaluation" class="sidebar__link">Evaluation</a>
+        <a href="#timeline" class="sidebar__link">Timeline</a>
+        <a href="#baselines" class="sidebar__link">Baselines & Ethics</a>
+      </nav>
+    </aside>
+
+    <!-- ── Main Content ────────────────────────────────── -->
+    <main class="main-content">
+
+      <!-- Header -->
+      <div class="mb-48" data-reveal="fade-up">
+        <span class="eyebrow">Task 01</span>
+        <h1 style="font-size: clamp(2rem, 5vw, 3rem); margin-bottom: 16px;">Explainable Statute Prediction</h1>
+        <p class="prose-lg text-muted">
+          Part of the track: <em>LLM as a Judge?: From Statute Prediction to Sycophancy Detection in Law</em>
+        </p>
+      </div>
+
+      <!-- Organizers -->
+      <div class="task-organizers mb-48" data-reveal="fade-up">
+        <div class="task-organizer">
+          <div class="task-organizer__name">Kripabandhu Ghosh</div>
+          <div class="task-organizer__affil">IISER Kolkata, India</div>
+          <a href="mailto:kripaghosh@iiserkol.ac.in" class="task-organizer__email">kripaghosh@iiserkol.ac.in</a>
+        </div>
+        <div class="task-organizer">
+          <div class="task-organizer__name">Liana Ermakova</div>
+          <div class="task-organizer__affil">Université de Bretagne Occidentale, France</div>
+          <a href="mailto:liana.ermakova@univ-brest.fr" class="task-organizer__email">liana.ermakova@univ-brest.fr</a>
+        </div>
+        <div class="task-organizer">
+          <div class="task-organizer__name">Shuvam Banerji Seal</div>
+          <div class="task-organizer__affil">IISER Kolkata, India</div>
+          <a href="mailto:sbs22ms076@iiserkol.ac.in" class="task-organizer__email">sbs22ms076@iiserkol.ac.in</a>
+        </div>
+        <div class="task-organizer">
+          <div class="task-organizer__name">Subinay Adhikary</div>
+          <div class="task-organizer__affil">IISER Kolkata, India</div>
+          <a href="mailto:sa21rs094@iiserkol.ac.in" class="task-organizer__email">sa21rs094@iiserkol.ac.in</a>
+        </div>
+        <div class="task-organizer">
+          <div class="task-organizer__name">Jaap Kamps</div>
+          <div class="task-organizer__affil">University of Amsterdam, Netherlands</div>
+          <a href="mailto:kamps@uva.nl" class="task-organizer__email">kamps@uva.nl</a>
+        </div>
+      </div>
+
+      <hr class="divider">
+
+      <!-- § 01 Overview -->
+      <section id="overview" class="task-section" data-reveal="fade-up">
+        <div class="task-section__eyebrow">§ 01 · OVERVIEW</div>
+        <h2>Overview</h2>
+        <p class="prose">
+          Given the factual description of an Indian Supreme Court case, participants must:
+        </p>
+        <ol class="prose mt-16" style="padding-left: 1.5rem; list-style: decimal;">
+          <li style="margin-bottom: 8px;">Identify which sections of the <strong>Indian Penal Code (IPC)</strong> are applicable</li>
+          <li style="margin-bottom: 8px;">Locate the <strong>exact sentence(s)</strong> from the case facts that trigger each applicable section</li>
+          <li style="margin-bottom: 8px;">Explain the <strong>legal reasoning</strong> connecting each fact sentence to the applicable IPC section</li>
+        </ol>
+        <p class="prose mt-16">
+          This task tests both <strong>legal knowledge</strong> (which sections apply?) and <strong>interpretability</strong> (why do they apply, grounded in the facts?).
+        </p>
+      </section>
+
+      <hr class="divider">
+
+      <!-- § 02 Task Description -->
+      <section id="description" class="task-section" data-reveal="fade-up">
+        <div class="task-section__eyebrow">§ 02 · TASK DESCRIPTION</div>
+        <h2>Task Description</h2>
+        <p class="prose">
+          The task requires predicting applicable IPC sections from case facts, grounding each prediction in specific sentences, and providing legal reasoning that connects the facts to the statute. This is a multi-output structured prediction problem combining classification, extraction, and generation.
+        </p>
+      </section>
+
+      <hr class="divider">
+
+      <!-- § 03 Jurisdiction & Scope -->
+      <section id="scope" class="task-section" data-reveal="fade-up">
+        <div class="task-section__eyebrow">§ 03 · JURISDICTION & SCOPE</div>
+        <h2>Jurisdiction & Scope</h2>
+        <div class="grid grid--2 mt-24">
+          <div class="card">
+            <h4 style="color: var(--color-green);">Included</h4>
+            <ul class="prose-sm" style="list-style: disc; padding-left: 1.5rem;">
+              <li>Indian Supreme Court only</li>
+              <li>Indian Penal Code (IPC) sections</li>
+            </ul>
+          </div>
+          <div class="card">
+            <h4 style="color: var(--color-pink);">Not Included</h4>
+            <ul class="prose-sm" style="list-style: disc; padding-left: 1.5rem;">
+              <li>Bharatiya Nyaya Sanhita (BNS)</li>
+              <li>CrPC, Evidence Act</li>
+              <li>U.S. statutes</li>
+            </ul>
+          </div>
+        </div>
+        <p class="prose mt-24">
+          <strong>Legal categories:</strong> Criminal, Civil, Constitutional, Tax, Labor, Commercial, Revenue, Administration, Environmental
+        </p>
+      </section>
+
+      <hr class="divider">
+
+      <!-- § 04 Training Data -->
+      <section id="data-training" class="task-section" data-reveal="fade-up">
+        <div class="task-section__eyebrow">§ 04 · TRAINING DATA</div>
+        <h2>Training Data</h2>
+
+        <div class="grid grid--3 mt-24 mb-32">
+          <div class="stat-card">
+            <div class="stat-card__number" style="font-size: var(--type-2xl);">500</div>
+            <div class="stat-card__label">Cases</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-card__number" style="font-size: var(--type-2xl);">JSONL</div>
+            <div class="stat-card__label">Format</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-card__number" style="font-size: var(--type-2xl);">~693</div>
+            <div class="stat-card__label">Avg. Words</div>
+          </div>
+        </div>
+
+        <p class="prose mb-16">
+          <strong>Release date:</strong> 15 June 2026
+        </p>
+
+        <p class="prose mb-24">
+          Each line in the training set has the following structure:
+        </p>
+
+        <div class="json-block" data-reveal="fade-up">
+          <div class="json-block__header">
+            <span class="json-block__label">Training Sample</span>
+            <button class="json-block__copy" aria-label="Copy code">
+              <span>⧉</span> Copy
+            </button>
+          </div>
+          <pre><code class="json" data-typewriter>{
+  "doc_id": "2004.INSC.496.txt",
+  "doc_url": "http://www.liiofindia.org/in/cases/cen/INSC/2004/496.html",
+  "fact": "Full case factual description...",
+  "statute": [
+    {
+      "section": "Section 302 IPC",
+      "exact_fact": "The accused was found in possession of the victim's blood-stained knife at the scene.",
+      "reasoning_trace": "Section 302 IPC applies because the facts establish intentional causing of death with a weapon. The presence of the accused with the weapon at the scene and the forensic evidence linking the knife to the victim satisfy the elements of murder under Section 300 IPC, making Section 302 the appropriate penal provision."
+    },
+    {
+      "section": "Section 201 IPC",
+      "exact_fact": "After the incident, the accused was seen washing blood-stained clothes at the community well.",
+      "reasoning_trace": "Section 201 IPC applies because the accused deliberately destroyed evidence by washing blood-stained clothing, constituting causing disappearance of evidence of an offence committed."
+    }
+  ]
+}</code></pre>
+        </div>
+
+        <div class="table-wrapper mt-24">
+          <table>
+            <thead>
+              <tr>
+                <th>Field</th>
+                <th>Type</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><code>doc_id</code></td>
+                <td>string</td>
+                <td>Unique case identifier (e.g., "2004.INSC.496.txt")</td>
+              </tr>
+              <tr>
+                <td><code>doc_url</code></td>
+                <td>string</td>
+                <td>Source URL of the judgment</td>
+              </tr>
+              <tr>
+                <td><code>fact</code></td>
+                <td>string</td>
+                <td>Full factual description of the case (~693 words average)</td>
+              </tr>
+              <tr>
+                <td><code>statute</code></td>
+                <td>list[dict]</td>
+                <td>List of applicable IPC sections with exact_fact and reasoning_trace</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <p class="prose-sm mt-16 text-muted">
+          A single case may have multiple statute entries (one per applicable IPC section). Each statute entry maps to a specific sentence in the facts and includes a reasoning trace.
+        </p>
+      </section>
+
+      <hr class="divider">
+
+      <!-- § 05 Test Data -->
+      <section id="data-test" class="task-section" data-reveal="fade-up">
+        <div class="task-section__eyebrow">§ 05 · TEST DATA</div>
+        <h2>Test Data</h2>
+
+        <div class="grid grid--2 mt-24 mb-24">
+          <div class="stat-card">
+            <div class="stat-card__number" style="font-size: var(--type-2xl);">100</div>
+            <div class="stat-card__label">Cases</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-card__number" style="font-size: var(--type-2xl);">20 Jul</div>
+            <div class="stat-card__label">Release Date</div>
+          </div>
+        </div>
+
+        <p class="prose mb-16">
+          <strong>Format:</strong> JSONL — only <code>doc_id</code>, <code>doc_url</code>, and <code>fact</code> are provided. No statute labels, no exact_fact sentences, no reasoning traces.
+        </p>
+
+        <div class="json-block" data-reveal="fade-up">
+          <div class="json-block__header">
+            <span class="json-block__label">Test Input</span>
+            <button class="json-block__copy" aria-label="Copy code">
+              <span>⧉</span> Copy
+            </button>
+          </div>
+          <pre><code class="json">{
+  "doc_id": "2016.INSC.210.txt",
+  "doc_url": "http://www.liiofindia.org/in/cases/cen/INSC/2016/210.html",
+  "fact": "Full case factual description..."
+}</code></pre>
+        </div>
+
+        <p class="prose mt-24">
+          Participants must predict <strong>all three outputs</strong>: section labels, exact_fact sentences, and reasoning traces.
+        </p>
+      </section>
+
+      <hr class="divider">
+
+      <!-- § 06 Submission Format -->
+      <section id="submission" class="task-section" data-reveal="fade-up">
+        <div class="task-section__eyebrow">§ 06 · SUBMISSION FORMAT</div>
+        <h2>Submission Format</h2>
+
+        <p class="prose mb-24">
+          Participants submit a single JSONL file. The submission format must be identical to the training data format:
+        </p>
+
+        <div class="json-block" data-reveal="fade-up">
+          <div class="json-block__header">
+            <span class="json-block__label">Submission Example</span>
+            <button class="json-block__copy" aria-label="Copy code">
+              <span>⧉</span> Copy
+            </button>
+          </div>
+          <pre><code class="json">{
+  "doc_id": "2016.INSC.210.txt",
+  "statute": [
+    {
+      "section": "Section 302 IPC",
+      "exact_fact": "The accused were five in number and they caused injuries to Ashok Kumar with sword and knife.",
+      "reasoning_trace": "Section 302 IPC applies because the facts establish that the accused caused death of the deceased by inflicting injuries with deadly weapons (sword and knife), satisfying the ingredients of murder under Section 300 IPC."
+    },
+    {
+      "section": "Section 149 IPC",
+      "exact_fact": "Companions of Kallu came to the factory and murdered Ashok Kumar.",
+      "reasoning_trace": "Section 149 IPC applies because the accused were members of an unlawful assembly, and the murder was committed in prosecution of the common object of such assembly."
+    }
+  ]
+}</code></pre>
+        </div>
+
+        <div class="card mt-24">
+          <h4>Submission Rules</h4>
+          <ul class="prose mt-16" style="list-style: disc; padding-left: 1.5rem;">
+            <li>Single run per team</li>
+            <li>No team size limit</li>
+            <li>JSONL format only, one line per test case</li>
+            <li>Each line must contain <code>doc_id</code> and <code>statute</code> (list of predictions)</li>
+          </ul>
+        </div>
+      </section>
+
+      <hr class="divider">
+
+      <!-- § 07 Evaluation -->
+      <section id="evaluation" class="task-section" data-reveal="fade-up">
+        <div class="task-section__eyebrow">§ 07 · EVALUATION</div>
+        <h2>Evaluation</h2>
+
+        <p class="prose mb-8">
+          <strong>Note:</strong> Metrics and weights are <em>tentative</em> and may be updated before the test data release.
+        </p>
+
+        <div class="table-wrapper mt-24">
+          <table class="metrics-table">
+            <thead>
+              <tr>
+                <th>Metric</th>
+                <th>Weight</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Macro F1</strong></td>
+                <td><span class="weight-badge weight-badge--tentative">35%</span></td>
+                <td>Exact match on predicted section labels vs. gold standard</td>
+              </tr>
+              <tr>
+                <td><strong>ROUGE-L</strong></td>
+                <td><span class="weight-badge weight-badge--tentative">25%</span></td>
+                <td>Longest common subsequence similarity between participant's reasoning and gold reasoning</td>
+              </tr>
+              <tr>
+                <td><strong>BLEU</strong></td>
+                <td><span class="weight-badge weight-badge--tentative">20%</span></td>
+                <td>Sentence-level BLEU score between reasoning texts</td>
+              </tr>
+              <tr>
+                <td><strong>Recall@3</strong></td>
+                <td><span class="weight-badge weight-badge--tentative">10%</span></td>
+                <td>Whether gold section labels appear in the participant's top-3 predictions</td>
+              </tr>
+              <tr>
+                <td><strong>Legal Semantic Score (LSS)</strong></td>
+                <td><span class="weight-badge weight-badge--tentative">10%</span></td>
+                <td>Cosine similarity of reasoning embeddings from a legal-domain language model (model not disclosed)</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <p class="prose mt-24">
+          <strong>Composite Score</strong> = weighted sum of above metrics.
+        </p>
+
+        <div class="card mt-24">
+          <p class="prose-sm">
+            The <strong>Legal Semantic Score</strong> uses a pre-trained legal-domain embedding model. The specific model will <em>NOT</em> be disclosed to participants, preventing gaming of this metric.
+          </p>
+          <p class="prose-sm mt-16">
+            Evaluation will be conducted on <strong>CodaBench</strong> (CodaLab v2). The scoring script will be released with the test data. The leaderboard will be updated automatically after each submission.
+          </p>
+        </div>
+      </section>
+
+      <hr class="divider">
+
+      <!-- § 08 Timeline -->
+      <section id="timeline" class="task-section" data-reveal="fade-up">
+        <div class="task-section__eyebrow">§ 08 · TIMELINE</div>
+        <h2>Timeline</h2>
+
+        <div class="table-wrapper mt-24">
+          <table>
+            <thead>
+              <tr>
+                <th>Date</th>
+                <th>Milestone</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>15 June 2026</strong></td>
+                <td>Training data release (500 cases)</td>
+              </tr>
+              <tr>
+                <td><strong>20 July 2026</strong></td>
+                <td>Test data release (100 cases)</td>
+              </tr>
+              <tr>
+                <td><strong>End July 2026</strong></td>
+                <td>Evaluation results declared</td>
+              </tr>
+              <tr>
+                <td><strong>15 August 2026</strong></td>
+                <td>Working notes due</td>
+              </tr>
+              <tr>
+                <td><strong>End September 2026</strong></td>
+                <td>Camera-ready copies</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <hr class="divider">
+
+      <!-- § 09 Baselines & Ethics -->
+      <section id="baselines" class="task-section" data-reveal="fade-up">
+        <div class="task-section__eyebrow">§ 09 · BASELINES & ETHICS</div>
+        <h2>Baseline Systems</h2>
+
+        <p class="prose mb-24">
+          At least one baseline system will be provided to participants. Potential baselines include:
+        </p>
+
+        <div class="grid grid--3">
+          <div class="card">
+            <h4>Zero-shot LLM</h4>
+            <p class="prose-sm mt-8">Prompt with facts only — no examples provided</p>
+          </div>
+          <div class="card">
+            <h4>Few-shot LLM</h4>
+            <p class="prose-sm mt-8">5 examples in prompt for in-context learning</p>
+          </div>
+          <div class="card">
+            <h4>BERT Classifier</h4>
+            <p class="prose-sm mt-8">Fine-tuned BERT-based model trained on the training set</p>
+          </div>
+        </div>
+
+        <h2 class="mt-48">Ethical Considerations</h2>
+        <ul class="prose mt-16" style="list-style: disc; padding-left: 1.5rem;">
+          <li style="margin-bottom: 8px;">All case data is from <strong>publicly available</strong> Indian Supreme Court judgments</li>
+          <li style="margin-bottom: 8px;">No personally identifiable information is included</li>
+          <li style="margin-bottom: 8px;">The task is designed to advance legal AI interpretability, <strong>not to provide legal advice</strong></li>
+        </ul>
+      </section>
+
+    </main>
+  </div>
+
+  <!-- ── Footer ──────────────────────────────────────── -->
+  <footer class="footer">
+    <p class="footer__text">
+      FIRE 2026 — Forum for Information Retrieval and Evaluation
+    </p>
+    <div class="footer__links">
+      <a href="https://fire-lab.github.io/" target="_blank" rel="noopener">FIRE 2026</a>
+      <a href="https://www.cikm2026.org/" target="_blank" rel="noopener">CIKM 2026</a>
+      <a href="faq.html">FAQ</a>
+      <a href="registration.html">Register</a>
+    </div>
+  </footer>
+
+  <script src="../js/nav.js"></script>
+  <script src="../js/scroll-reveal.js"></script>
+  <script src="../js/syntax.js"></script>
+  <script src="../js/typewriter.js"></script>
+  <script src="../js/scrollspy.js"></script>
+  <script src="../js/copy.js"></script>
+</body>
+</html>

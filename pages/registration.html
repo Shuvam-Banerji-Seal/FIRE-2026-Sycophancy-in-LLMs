@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Registration — FIRE 2026</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400;1,500&family=Fira+Code:wght@400&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="../css/base.css">
+  <link rel="stylesheet" href="../css/type.css">
+  <link rel="stylesheet" href="../css/layout.css">
+  <link rel="stylesheet" href="../css/components.css">
+  <link rel="stylesheet" href="../css/task.css">
+  <link rel="stylesheet" href="../css/syntax.css">
+  <link rel="stylesheet" href="../css/animations.css">
+</head>
+<body>
+
+  <div class="scroll-progress"></div>
+
+  <!-- ── Navigation ───────────────────────────────────── -->
+  <nav class="nav" role="navigation">
+    <a href="../index.html" class="nav__logo">
+      <img src="../assets/logo.svg" alt="" width="28" height="28">
+      FIRE 2026
+    </a>
+    <div class="nav__links">
+      <a href="../index.html" class="nav-link">Home</a>
+      <a href="task1.html" class="nav-link">Task 1: ESP</a>
+      <a href="task2.html" class="nav-link">Task 2: Sycophancy</a>
+      <a href="faq.html" class="nav-link">FAQ</a>
+      <a href="registration.html" class="nav-link btn btn-outline" style="padding: 8px 20px; font-size: 0.7rem;" aria-current="page">Register</a>
+    </div>
+    <button class="nav__toggle" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <div class="nav__overlay">
+    <a href="../index.html" class="nav-link">Home</a>
+    <a href="task1.html" class="nav-link">Task 1: ESP</a>
+    <a href="task2.html" class="nav-link">Task 2: Sycophancy</a>
+    <a href="faq.html" class="nav-link">FAQ</a>
+    <a href="registration.html" class="nav-link" aria-current="page">Register</a>
+  </div>
+
+  <!-- ── Hero Section ──────────────────────────────────── -->
+  <section style="display: flex; justify-content: center; align-items: center; min-height: 80vh; padding: 120px 24px 60px; text-align: center;" data-reveal="fade-up">
+    <div style="max-width: 640px;">
+      <span class="eyebrow">JOIN THE CHALLENGE</span>
+      <h1 style="font-size: clamp(2.2rem, 5vw, 3.2rem); margin-bottom: 16px;">Register Now</h1>
+      <p class="prose-lg text-muted" style="margin-bottom: 32px;">
+        Participate in the FIRE 2026 shared track <em>LLM as a Judge?: From Statute Prediction to Sycophancy Detection in Law</em>. Register on CodaBench to access the competition platform, download training data, and submit your predictions.
+      </p>
+      <a href="#" class="btn btn-primary" style="padding: 12px 32px; font-size: 0.9rem;">Register on CodaBench</a>
+      <p class="text-muted" style="margin-top: 16px; font-size: 0.85rem;">CodaBench competition page coming soon</p>
+    </div>
+  </section>
+
+  <!-- ── How to Participate ────────────────────────────── -->
+  <section style="max-width: 720px; margin: 0 auto; padding: 0 24px 120px;" data-reveal="fade-up">
+    <h2 style="text-align: center; margin-bottom: 40px;">How to Participate</h2>
+
+    <div style="display: grid; gap: 24px;">
+      <div class="card" style="display: flex; gap: 20px; align-items: flex-start; padding: 24px;">
+        <div style="min-width: 32px; height: 32px; border-radius: 50%; background: var(--color-accent, #6c8ebf); color: #fff; display: flex; align-items: center; justify-content: center; font-weight: 600; font-size: 0.85rem;">1</div>
+        <div>
+          <h4 style="margin-bottom: 4px;">Register on CodaBench</h4>
+          <p class="prose-sm text-muted">Create an account on the CodaBench competition platform to access the shared track.</p>
+        </div>
+      </div>
+
+      <div class="card" style="display: flex; gap: 20px; align-items: flex-start; padding: 24px;">
+        <div style="min-width: 32px; height: 32px; border-radius: 50%; background: var(--color-accent, #6c8ebf); color: #fff; display: flex; align-items: center; justify-content: center; font-weight: 600; font-size: 0.85rem;">2</div>
+        <div>
+          <h4 style="margin-bottom: 4px;">Download Training Data</h4>
+          <p class="prose-sm text-muted">Get the 500-case training set with statute labels, exact sentences, and reasoning traces.</p>
+        </div>
+      </div>
+
+      <div class="card" style="display: flex; gap: 20px; align-items: flex-start; padding: 24px;">
+        <div style="min-width: 32px; height: 32px; border-radius: 50%; background: var(--color-accent, #6c8ebf); color: #fff; display: flex; align-items: center; justify-content: center; font-weight: 600; font-size: 0.85rem;">3</div>
+        <div>
+          <h4 style="margin-bottom: 4px;">Build Your System</h4>
+          <p class="prose-sm text-muted">Develop a model that predicts applicable IPC sections, grounds them in facts, and generates legal reasoning.</p>
+        </div>
+      </div>
+
+      <div class="card" style="display: flex; gap: 20px; align-items: flex-start; padding: 24px;">
+        <div style="min-width: 32px; height: 32px; border-radius: 50%; background: var(--color-accent, #6c8ebf); color: #fff; display: flex; align-items: center; justify-content: center; font-weight: 600; font-size: 0.85rem;">4</div>
+        <div>
+          <h4 style="margin-bottom: 4px;">Submit Predictions</h4>
+          <p class="prose-sm text-muted">Upload your JSONL submission file to CodaBench and check your score on the leaderboard.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Footer ──────────────────────────────────────── -->
+  <footer class="footer">
+    <p class="footer__text">
+      FIRE 2026 — Forum for Information Retrieval and Evaluation
+    </p>
+    <div class="footer__links">
+      <a href="https://fire-lab.github.io/" target="_blank" rel="noopener">FIRE 2026</a>
+      <a href="https://www.cikm2026.org/" target="_blank" rel="noopener">CIKM 2026</a>
+      <a href="faq.html">FAQ</a>
+      <a href="registration.html">Register</a>
+    </div>
+  </footer>
+
+  <script src="../js/nav.js"></script>
+  <script src="../js/scroll-reveal.js"></script>
+</body>
+</html>

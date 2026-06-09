@@ -1,0 +1,324 @@
+/* task.css — Task page sidebar + main layout, JSON blocks */
+
+@layer pages {
+  /* ── JSON Block ──────────────────────────────────────── */
+  .json-block {
+    background: #04040a;
+    border: 1px solid var(--color-border);
+    border-left: 3px solid var(--color-cyan);
+    border-radius: 2px;
+    margin: 24px 0;
+    overflow: hidden;
+  }
+
+  .json-block__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 28px;
+    background: var(--color-surface-1);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .json-block__label {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: var(--type-xs);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--color-muted);
+  }
+
+  .json-block__copy {
+    background: none;
+    border: 1px solid var(--color-border);
+    color: var(--color-muted);
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    padding: 4px 12px;
+    border-radius: 2px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    transition: all var(--dur-fast);
+  }
+
+  .json-block__copy:hover {
+    border-color: var(--color-cyan);
+    color: var(--color-cyan);
+  }
+
+  .json-block__copy.copied {
+    border-color: var(--color-green);
+    color: var(--color-green);
+  }
+
+  .json-block pre {
+    margin: 0;
+    border: none;
+    border-left: none;
+    border-radius: 0;
+    padding: 24px 28px;
+    line-height: 1.8;
+    overflow-x: auto;
+    counter-reset: line;
+  }
+
+  .json-block pre code {
+    display: block;
+    white-space: pre;
+  }
+
+  /* ── Task section headers ────────────────────────────── */
+  .task-section {
+    margin-bottom: 64px;
+  }
+
+  .task-section__eyebrow {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    color: var(--color-ghost);
+    letter-spacing: 0.1em;
+    margin-bottom: 8px;
+  }
+
+  .task-section h2 {
+    margin-bottom: 24px;
+  }
+
+  /* ── Metrics table styling ───────────────────────────── */
+  .metrics-table {
+    width: 100%;
+    margin: 24px 0;
+  }
+
+  .metrics-table th {
+    text-align: left;
+  }
+
+  .weight-badge {
+    display: inline-block;
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    padding: 3px 8px;
+    border-radius: 2px;
+    background: rgba(255, 179, 71, 0.08);
+    border: 1px solid rgba(255, 179, 71, 0.2);
+    color: var(--color-amber);
+  }
+
+  .weight-badge--tentative {
+    border-style: dashed;
+    opacity: 0.7;
+  }
+
+  /* ── Organizer grid for task page ────────────────────── */
+  .task-organizers {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 16px;
+    margin: 24px 0;
+  }
+
+  .task-organizer {
+    padding: 16px;
+    background: var(--color-surface-1);
+    border: 1px solid var(--color-border);
+    border-radius: 2px;
+  }
+
+  .task-organizer__name {
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-size: var(--type-base);
+    color: #ffffff;
+    margin-bottom: 2px;
+  }
+
+  .task-organizer__affil {
+    font-family: var(--font-body);
+    font-size: var(--type-sm);
+    color: var(--color-muted);
+    font-style: italic;
+  }
+
+  .task-organizer__email {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    color: var(--color-cyan);
+    margin-top: 4px;
+    display: block;
+  }
+
+  /* ── Organizer Cards (organizers page) ─────────────── */
+  .organizer-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 24px;
+    margin: 24px 0;
+  }
+
+  .organizer-card {
+    background: var(--color-surface-1);
+    border: 1px solid var(--color-border);
+    border-radius: 2px;
+    padding: 28px;
+    transition: border-color var(--dur-mid) var(--ease-out-quart),
+                transform var(--dur-mid) var(--ease-out-quart);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .organizer-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--color-cyan), transparent);
+    opacity: 0;
+    transition: opacity var(--dur-mid) var(--ease-out-quart);
+  }
+
+  .organizer-card:hover {
+    border-color: var(--color-border-lit);
+    transform: translateY(-4px);
+  }
+
+  .organizer-card:hover::before {
+    opacity: 1;
+  }
+
+  .organizer-card__header {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 16px;
+  }
+
+  .organizer-card__avatar {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: var(--color-cyan);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: var(--type-sm);
+    color: #000;
+    flex-shrink: 0;
+  }
+
+  .organizer-card__name {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: var(--type-lg);
+    color: #ffffff;
+    letter-spacing: 0.03em;
+  }
+
+  .organizer-card__affil {
+    font-family: var(--font-body);
+    font-size: var(--type-sm);
+    color: var(--color-muted);
+    font-style: italic;
+    margin-top: 2px;
+  }
+
+  .organizer-card__email {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    color: var(--color-cyan);
+    display: block;
+    margin-bottom: 12px;
+    transition: color var(--dur-fast);
+  }
+
+  .organizer-card__email:hover {
+    color: #ffffff;
+  }
+
+  .organizer-card__role {
+    margin-bottom: 12px;
+  }
+
+  .organizer-card__bio {
+    font-family: var(--font-body);
+    font-size: var(--type-sm);
+    line-height: 1.7;
+    color: var(--color-muted);
+  }
+
+  @media (max-width: 900px) {
+    .organizer-cards {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  /* ── Experience Cards (organizers page) ────────────── */
+  .experience-list {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  .experience-card {
+    background: var(--color-surface-1);
+    border: 1px solid var(--color-border);
+    border-left: 3px solid var(--color-cyan);
+    border-radius: 2px;
+    padding: 24px 28px;
+    transition: border-color var(--dur-mid) var(--ease-out-quart),
+                transform var(--dur-mid) var(--ease-out-quart);
+  }
+
+  .experience-card:hover {
+    border-color: var(--color-border-lit);
+    border-left-color: var(--color-cyan);
+    transform: translateY(-2px);
+  }
+
+  .experience-card__header {
+    margin-bottom: 12px;
+  }
+
+  .experience-card__name {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: var(--type-base);
+    color: #ffffff;
+  }
+
+  .experience-card__affil {
+    font-family: var(--font-body);
+    font-size: var(--type-sm);
+    color: var(--color-muted);
+    font-style: italic;
+  }
+
+  .experience-card__list {
+    list-style: disc;
+    padding-left: 1.5rem;
+    margin: 0;
+  }
+
+  .experience-card__list li {
+    font-family: var(--font-body);
+    font-size: var(--type-sm);
+    line-height: 1.7;
+    color: var(--color-muted);
+    margin-bottom: 6px;
+  }
+
+  .experience-card__list li:last-child {
+    margin-bottom: 0;
+  }
+
+  .experience-card__list li strong {
+    color: var(--color-text);
+  }
+}

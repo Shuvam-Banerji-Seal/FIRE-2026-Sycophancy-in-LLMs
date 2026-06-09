@@ -1,0 +1,12 @@
+/* syntax.css — JSON syntax token colors */
+
+@layer components {
+  .tok-key    { color: #00e5ff; }
+  .tok-str    { color: #00ff99; }
+  .tok-num    { color: #ffb347; }
+  .tok-bool   { color: #9b6dff; }
+  .tok-null   { color: #7070a0; }
+  .tok-brace  { color: #ff2d6b; }
+  .tok-bracket{ color: #ff8c42; }
+  .tok-colon  { color: #3a3a5a; }
+}

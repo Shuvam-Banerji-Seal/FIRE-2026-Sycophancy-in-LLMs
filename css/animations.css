@@ -1,0 +1,225 @@
+/* animations.css — @keyframes library, .animate-* utility classes */
+
+@layer animations {
+  /* ── Hero entrance sequence ──────────────────────────── */
+  @keyframes hero-rule-draw {
+    from { width: 0; }
+    to   { width: 100%; }
+  }
+
+  @keyframes hero-fade-up {
+    from {
+      opacity: 0;
+      transform: translateY(12px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes hero-title-reveal {
+    from {
+      opacity: 0;
+      clip-path: inset(0 100% 0 0);
+    }
+    to {
+      opacity: 1;
+      clip-path: inset(0 0% 0 0);
+    }
+  }
+
+  @keyframes hero-cta-in {
+    from {
+      opacity: 0;
+      transform: scale(0.85);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
+  @keyframes hero-grain-in {
+    from { opacity: 0; }
+    to   { opacity: 0.03; }
+  }
+
+  /* ── Hero animation classes ──────────────────────────── */
+  .hero--animate .hero__rule {
+    animation: hero-rule-draw 600ms var(--ease-cinematic) 100ms both;
+  }
+
+  .hero--animate .hero__eyebrow {
+    animation: hero-fade-up 400ms var(--ease-out-expo) 400ms both;
+  }
+
+  .hero--animate .hero__title .char {
+    animation: hero-title-reveal 500ms var(--ease-out-expo) both;
+  }
+
+  .hero--animate .hero__subtitle {
+    animation: hero-fade-up 400ms var(--ease-out-expo) 1200ms both;
+  }
+
+  .hero--animate .hero__cta {
+    animation: hero-cta-in 600ms var(--ease-spring) 1500ms both;
+  }
+
+  .hero--animate .hero__scroll {
+    animation: hero-fade-up 400ms var(--ease-out-expo) 1800ms both;
+  }
+
+  .hero--animate::before {
+    animation: hero-grain-in 600ms ease 2000ms both;
+  }
+
+  /* ── Scroll reveal variants ──────────────────────────── */
+  @keyframes reveal-fade-up {
+    from {
+      opacity: 0;
+      transform: translateY(32px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes reveal-fade-left {
+    from {
+      opacity: 0;
+      transform: translateX(-40px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  @keyframes reveal-fade-right {
+    from {
+      opacity: 0;
+      transform: translateX(40px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  @keyframes reveal-scale {
+    from {
+      opacity: 0;
+      transform: scale(0.92);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
+  @keyframes reveal-clip-left {
+    from { clip-path: inset(0 100% 0 0); }
+    to   { clip-path: inset(0 0 0 0); }
+  }
+
+  @keyframes reveal-clip-top {
+    from { clip-path: inset(0 0 100% 0); }
+    to   { clip-path: inset(0 0 0 0); }
+  }
+
+  @keyframes reveal-blur {
+    from {
+      opacity: 0;
+      filter: blur(12px);
+    }
+    to {
+      opacity: 1;
+      filter: blur(0);
+    }
+  }
+
+  /* ── Reveal state classes ────────────────────────────── */
+  [data-reveal].revealed {
+    animation-fill-mode: both;
+  }
+
+  [data-reveal="fade-up"].revealed {
+    animation-name: reveal-fade-up;
+    animation-duration: var(--dur-slow);
+    animation-timing-function: var(--ease-out-expo);
+  }
+
+  [data-reveal="fade-left"].revealed {
+    animation-name: reveal-fade-left;
+    animation-duration: var(--dur-slow);
+    animation-timing-function: var(--ease-out-expo);
+  }
+
+  [data-reveal="fade-right"].revealed {
+    animation-name: reveal-fade-right;
+    animation-duration: var(--dur-slow);
+    animation-timing-function: var(--ease-out-expo);
+  }
+
+  [data-reveal="scale"].revealed {
+    animation-name: reveal-scale;
+    animation-duration: var(--dur-slow);
+    animation-timing-function: var(--ease-out-expo);
+  }
+
+  [data-reveal="clip-left"].revealed {
+    animation-name: reveal-clip-left;
+    animation-duration: var(--dur-slow);
+    animation-timing-function: var(--ease-out-expo);
+  }
+
+  [data-reveal="clip-top"].revealed {
+    animation-name: reveal-clip-top;
+    animation-duration: var(--dur-slow);
+    animation-timing-function: var(--ease-out-expo);
+  }
+
+  [data-reveal="blur"].revealed {
+    animation-name: reveal-blur;
+    animation-duration: var(--dur-slow);
+    animation-timing-function: var(--ease-out-expo);
+  }
+
+  /* ── Timeline animations ─────────────────────────────── */
+  @keyframes timeline-dot-in {
+    from { transform: translateX(-50%) scale(0); }
+    to   { transform: translateX(-50%) scale(1); }
+  }
+
+  @keyframes timeline-dot-pulse {
+    0%, 100% { box-shadow: 0 0 12px rgba(0, 229, 255, 0.3); }
+    50%      { box-shadow: 0 0 24px rgba(0, 229, 255, 0.6); }
+  }
+
+  /* ── Reduced motion ──────────────────────────────────── */
+  @media (prefers-reduced-motion: reduce) {
+    .hero--animate .hero__rule,
+    .hero--animate .hero__eyebrow,
+    .hero--animate .hero__title .char,
+    .hero--animate .hero__subtitle,
+    .hero--animate .hero__cta,
+    .hero--animate .hero__scroll,
+    .hero--animate::before {
+      animation: none !important;
+      opacity: 1 !important;
+      transform: none !important;
+      clip-path: none !important;
+      width: 100% !important;
+    }
+
+    [data-reveal].revealed {
+      animation: none !important;
+      opacity: 1 !important;
+      transform: none !important;
+      clip-path: none !important;
+      filter: none !important;
+    }
+  }
+}
