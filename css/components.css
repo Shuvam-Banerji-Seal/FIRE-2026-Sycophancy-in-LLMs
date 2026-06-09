@@ -20,7 +20,7 @@
 
   .nav.scrolled {
     height: 60px;
-    background: rgba(7, 7, 9, 0.92);
+    background: rgba(8, 8, 8, 0.92);
     backdrop-filter: blur(20px) saturate(180%);
     -webkit-backdrop-filter: blur(20px) saturate(180%);
     border-bottom: 1px solid var(--color-border);
@@ -157,9 +157,14 @@
     color: var(--color-cyan);
   }
 
-  @media (max-width: 768px) {
+  @media (max-width: 900px) {
     .nav__links { display: none; }
     .nav__toggle { display: flex; }
+  }
+
+  @media (min-width: 769px) and (max-width: 900px) {
+    .nav__links { gap: 16px; }
+    .nav-link { font-size: 0.8rem; }
   }
 
   /* ── Scroll Progress ─────────────────────────────────── */

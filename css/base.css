@@ -57,15 +57,15 @@
 
     /* ── Palette ────────────────────────── */
     --color-void:        #000000;
-    --color-abyss:       #070709;
-    --color-surface-1:   #0d0d10;
-    --color-surface-2:   #13131a;
-    --color-border:      #1e1e28;
-    --color-border-lit:  #2e2e3e;
+    --color-abyss:       #080808;
+    --color-surface-1:   #0e0e0e;
+    --color-surface-2:   #141414;
+    --color-border:      #1c1c1c;
+    --color-border-lit:  #2a2a2a;
 
-    --color-text:        #e4e4f0;
-    --color-muted:       #7070a0;
-    --color-ghost:       #3a3a5a;
+    --color-text:        #e8e8e8;
+    --color-muted:       #888888;
+    --color-ghost:       #444444;
 
     --color-cyan:        #00e5ff;
     --color-pink:        #ff2d6b;
