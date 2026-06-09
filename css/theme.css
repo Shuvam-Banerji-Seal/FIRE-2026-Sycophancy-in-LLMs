@@ -186,19 +186,19 @@
 
 /* JSON blocks — stay dark */
 [data-theme="light"] .json-block {
-  background: #1a1610;
-  border-color: #2a2418;
-  border-left-color: var(--color-cyan);
+  background: #1a1610 !important;
+  border-color: #2a2418 !important;
+  border-left-color: var(--color-cyan) !important;
 }
 
 [data-theme="light"] .json-block__header {
-  background: #1e1a12;
-  border-bottom-color: #2a2418;
+  background: #1e1a12 !important;
+  border-bottom-color: #2a2418 !important;
 }
 
 [data-theme="light"] .json-block pre {
-  background: #1a1610;
-  color: #d4c8b0;
+  background: #1a1610 !important;
+  color: #d4c8b0 !important;
 }
 
 /* Tables */
@@ -395,19 +395,19 @@
 
 /* Logo background in light mode for visibility */
 [data-theme="light"] .nav__logo img {
-  background: #1a2a1a;
+  background: #2c3a2c;
   border-radius: 4px;
   padding: 2px;
 }
 
 [data-theme="light"] .hero__logo {
-  background: #1a2a1a;
+  background: #2c3a2c;
   border-radius: 8px;
   padding: 8px;
 }
 
 [data-theme="light"] .loader-logo-img {
-  background: #1a2a1a;
+  background: #2c3a2c;
   border-radius: 6px;
   padding: 4px;
 }
