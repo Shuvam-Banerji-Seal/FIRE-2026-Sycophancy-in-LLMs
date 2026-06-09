@@ -395,19 +395,19 @@
 
 /* Logo background in light mode for visibility */
 [data-theme="light"] .nav__logo img {
-  background: #2c3a2c;
+  background: #c9bda4;
   border-radius: 4px;
   padding: 2px;
 }
 
 [data-theme="light"] .hero__logo {
-  background: #2c3a2c;
+  background: #c9bda4;
   border-radius: 8px;
   padding: 8px;
 }
 
 [data-theme="light"] .loader-logo-img {
-  background: #2c3a2c;
+  background: #c9bda4;
   border-radius: 6px;
   padding: 4px;
 }
