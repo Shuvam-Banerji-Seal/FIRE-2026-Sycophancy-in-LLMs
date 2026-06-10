@@ -129,15 +129,15 @@
 
   // ── TIMELINE EVENTS ───────────────────────────────────
   function sizeTimelineEvents() {
-    if (!prepare) return
-    document.querySelectorAll('.timeline__event').forEach(ev => {
+    if (!prepare || !layout) return
+    document.querySelectorAll('.tl-event').forEach(ev => {
       const text = ev.textContent.trim()
       const fontFamily = "'Cormorant Garamond', serif"
-      // Timeline content is about half the container width
-      const container = ev.closest('.timeline')
-      const maxWidth = container ? (container.offsetWidth / 2 - 60) : 300
+      const parent = ev.closest('.tl-cnt')
+      const containerWidth = parent ? parent.offsetWidth : (window.innerWidth - 100)
+      const maxWidth = Math.max(containerWidth - 8, 80)
 
-      const { fontSize } = getOptimalSize(text, fontFamily, 14, 20, maxWidth, 1.5, 3)
+      const { fontSize } = getOptimalSize(text, fontFamily, 11, 20, maxWidth, 1.5, 4)
       ev.style.fontSize = `${fontSize}px`
     })
   }
