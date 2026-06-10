@@ -298,7 +298,7 @@
             <strong>Task 1 — Explainable Statute Prediction (ESP):</strong> Given the factual description of an Indian Supreme Court case, predict which sections of the Indian Penal Code (IPC) are applicable, locate the exact sentences that trigger each section, and provide legal reasoning connecting facts to the statute.
           </p>
           <p>
-            <strong>Task 2 — Sycophancy Detection in Legal LLMs:</strong> Evaluate whether LLM-based judges exhibit sycophantic behavior — shifting their legal rulings based on suggestive prompts rather than the merits of a case.
+            <strong>Task 2 — Sycophancy Detection:</strong> Given a legal case paired with oppositely-framed prompts and corresponding LLM responses, determine whether the model exhibits sycophantic behavior — agreeing with both framings rather than maintaining a consistent stance.
           </p>
           <p>
             The track is part of <strong>FIRE 2026</strong> (Forum for Information Retrieval and Evaluation).
@@ -318,7 +318,7 @@
             For <strong>Task 1</strong>, each training sample contains <code>doc_id</code>, <code>doc_url</code>, <code>fact</code> (the full case description), and <code>statute</code> (a list of applicable IPC sections with <code>exact_fact</code> sentences and <code>reasoning_trace</code> fields). The test data provides only <code>doc_id</code>, <code>doc_url</code>, and <code>fact</code>.
           </p>
           <p>
-            For <strong>Task 2</strong>, the data consists of legal case scenarios paired with suggestive and neutral prompts. See the respective task pages for full schema details.
+            For <strong>Task 2</strong>, each training sample contains <code>case_id</code>, <code>jurisdiction</code>, <code>fact</code>, paired prompts (<code>true_prompt</code> and <code>flip_prompt</code>), paired responses (<code>true_response</code> and <code>flip_response</code>), a <code>label</code> (sycophantic/non-sycophantic), and <code>label_source</code>. See the <a href="task2.html">Task 2 page</a> for the full schema.
           </p>
         </div>
       </div>
@@ -335,7 +335,7 @@
             For <strong>Task 1</strong>, each line in your submission must contain <code>doc_id</code> and <code>statute</code> — a list of predictions, each with <code>section</code>, <code>exact_fact</code>, and <code>reasoning_trace</code> fields.
           </p>
           <p>
-            For <strong>Task 2</strong>, follow the submission format specified on the Task 2 page. Only <strong>one run per team</strong> is allowed per task.
+            For <strong>Task 2</strong>, each line must contain <code>case_id</code>, <code>prompt_variant</code>, <code>model</code>, and <code>predicted_label</code>. See the <a href="task2.html">Task 2 page</a> for the exact format. Only <strong>one run per team</strong> is allowed per task.
           </p>
           <p>
             The scoring scripts will be released alongside the test data, and the leaderboard updates automatically after each submission.
@@ -355,7 +355,7 @@
             <strong>Macro F1 (35%):</strong> Exact match on predicted section labels vs. gold standard. <strong>ROUGE-L (25%):</strong> Longest common subsequence similarity between predicted and gold reasoning traces. <strong>BLEU (20%):</strong> Sentence-level BLEU score for reasoning texts. <strong>Recall@3 (10%):</strong> Whether gold labels appear in the top-3 predictions. <strong>Legal Semantic Score (10%):</strong> Cosine similarity of reasoning embeddings from a undisclosed legal-domain language model.
           </p>
           <p>
-            <strong>Task 2</strong> evaluates sycophancy detection using accuracy and consistency metrics as described on the Task 2 page.
+            <strong>Task 2</strong> uses standard binary classification metrics: <strong>Accuracy</strong>, <strong>Precision</strong>, <strong>Recall</strong>, and <strong>F1 Score</strong>. Overall ranking is determined by the F1 Score. See the <a href="task2.html">Task 2 page</a> for details.
           </p>
           <p>
             <em>Note: Metrics and weights are tentative and may be updated before the test data release.</em>
