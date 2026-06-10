@@ -8,6 +8,7 @@
   const overlay = document.querySelector('.nav__overlay')
   const progress = document.querySelector('.scroll-progress')
   const overlayLinks = overlay ? overlay.querySelectorAll('.nav-link') : []
+  const overlayToggle = overlay ? overlay.querySelector('.theme-toggle') : null
 
   // ── Sticky nav state ────────────────────────────────────
   let lastScroll = 0
@@ -59,6 +60,11 @@
       // Staggered entrance
       link.style.transitionDelay = `${i * 40}ms`
     })
+
+    // Close on theme toggle click
+    if (overlayToggle) {
+      overlayToggle.addEventListener('click', () => closeMenu())
+    }
 
     // Close on Escape
     document.addEventListener('keydown', (e) => {
