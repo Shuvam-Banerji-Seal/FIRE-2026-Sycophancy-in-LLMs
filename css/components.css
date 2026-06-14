@@ -312,7 +312,7 @@
     font-size: var(--type-lg);
     letter-spacing: 0.03em;
     margin-bottom: 12px;
-    color: var(--color-heading);
+    color: #ffffff;
   }
 
   .card__desc {

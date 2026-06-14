@@ -1,20 +1,30 @@
-/* theme.css — Theme-override layer for the LIGHT (default) theme.
- *
- * The default theme is LIGHT ("coffee paper") — see :root in base.css
- * for the token values. This file holds:
- *
- *   1. Decorations that only apply in light mode (paper texture).
- *   2. Rules that pin certain surfaces to stay dark even in light mode
- *      (JSON code blocks, code blocks — these need high contrast for
- *      syntax colors to remain readable).
- *   3. Component-level overrides that were either redundant with
- *      tokens (deleted) or non-token colors that flip with theme.
- *   4. Logo-swap rules (default = light logo, [data-theme="dark"] = dark logo).
- *   5. Smooth theme-transition properties.
- */
+/* theme.css — Light theme (coffee paper) + theme toggle styles */
 
-/* ── Paper Texture (light-only) ────────────────────────── */
-body::before {
+/* ── Light Theme Tokens ──────────────────────────────── */
+[data-theme="light"] {
+  --color-void:       #f5f0e8;
+  --color-abyss:      #f0ead6;
+  --color-surface-1:  #ebe4d0;
+  --color-surface-2:  #e5dcc6;
+  --color-border:     #c9bda4;
+  --color-border-lit: #b0a288;
+
+  --color-text:       #2c2416;
+  --color-muted:      #6b5d4a;
+  --color-ghost:      #9a8b74;
+
+  --color-cyan:       #0a7a9e;
+  --color-pink:       #c42050;
+  --color-green:      #1a8a5a;
+  --color-amber:      #b87a20;
+  --color-violet:     #6a42c4;
+
+  --glow-cyan:  0 0 20px rgba(10, 122, 158, 0.2), 0 0 40px rgba(10, 122, 158, 0.08);
+  --glow-pink:  0 0 20px rgba(196, 32, 80, 0.2), 0 0 40px rgba(196, 32, 80, 0.08);
+}
+
+/* ── Paper Texture ───────────────────────────────────── */
+[data-theme="light"] body::before {
   content: '';
   position: fixed;
   inset: 0;
@@ -24,73 +34,112 @@ body::before {
   z-index: 0;
 }
 
-/* ── JSON & code blocks stay dark in BOTH themes for legibility ── */
-.json-block {
-  background: #1a1610;
-  border-color: #2a2418;
+/* ════════════════════════════════════════════════════════ */
+/* HARDCODED COLOR OVERRIDES — fix all #ffffff / #fff      */
+/* ════════════════════════════════════════════════════════ */
+
+/* type.css: headings */
+[data-theme="light"] h1,
+[data-theme="light"] h2,
+[data-theme="light"] h3,
+[data-theme="light"] h4,
+[data-theme="light"] h5,
+[data-theme="light"] h6 {
+  color: #1a1408;
+}
+
+/* type.css: .prose strong */
+[data-theme="light"] .prose strong {
+  color: #1a1408;
+}
+
+/* type.css: .pull-quote */
+[data-theme="light"] .pull-quote {
+  color: #2c2416;
   border-left-color: var(--color-cyan);
 }
 
-.json-block__header {
-  background: #1e1a12;
-  border-bottom-color: #2a2418;
+/* landing.css: .hero__title */
+[data-theme="light"] .hero__title {
+  color: #1a1408;
 }
 
-.json-block pre {
-  background: #1a1610;
-  color: #d4c8b0;
+/* landing.css: .organizer-card__name */
+[data-theme="light"] .organizer-card__name {
+  color: #1a1408;
 }
 
-[data-theme="dark"] .json-block {
-  background: #04040a;
-  border-color: var(--color-border);
-}
-
-[data-theme="dark"] .json-block__header {
-  background: var(--color-surface-1);
-  border-bottom-color: var(--color-border);
-}
-
-[data-theme="dark"] .json-block pre {
-  background: #04040a;
-  color: var(--color-text);
-}
-
-/* ── Stat numbers — keep cyan accent in both themes ────── */
-.stat-card__number {
+/* landing.css: .stat-card__number */
+[data-theme="light"] .stat-card__number {
   color: var(--color-cyan);
 }
 
-/* ── Nav scrolled state — tokenized for both themes ────── */
-.nav.scrolled {
+/* landing.css: .metric-row__name */
+[data-theme="light"] .metric-row__name {
+  color: #1a1408;
+}
+
+/* task.css: .task-organizer__name */
+[data-theme="light"] .task-organizer__name {
+  color: #1a1408;
+}
+
+/* task.css: .organizer-card__name (task page version) */
+[data-theme="light"] .organizer-card__name {
+  color: #1a1408;
+}
+
+/* task.css: .experience-card__name */
+[data-theme="light"] .experience-card__name {
+  color: #1a1408;
+}
+
+/* components.css: .card__title */
+[data-theme="light"] .card__title {
+  color: #1a1408;
+}
+
+/* components.css: table header cells */
+[data-theme="light"] thead th {
+  color: #1a1408;
+}
+
+/* components.css: table data cells */
+[data-theme="light"] tbody td {
+  color: var(--color-text);
+}
+
+/* base.css: selection */
+[data-theme="light"] ::selection {
+  background: rgba(10, 122, 158, 0.15);
+  color: #1a1408;
+}
+
+/* ════════════════════════════════════════════════════════ */
+/* COMPONENT OVERRIDES                                     */
+/* ════════════════════════════════════════════════════════ */
+
+/* Nav */
+[data-theme="light"] .nav.scrolled {
   background: rgba(240, 234, 214, 0.92);
-  backdrop-filter: blur(20px) saturate(180%);
-  -webkit-backdrop-filter: blur(20px) saturate(180%);
-  border-bottom: 1px solid var(--color-border);
+  border-bottom-color: var(--color-border);
 }
 
-[data-theme="dark"] .nav.scrolled {
-  background: rgba(8, 8, 8, 0.92);
-}
-
-.nav__toggle span {
+[data-theme="light"] .nav__toggle span {
   background: var(--color-text);
 }
 
-.nav__overlay {
+[data-theme="light"] .nav__overlay {
   background: rgba(245, 240, 232, 0.98);
 }
 
-[data-theme="dark"] .nav__overlay {
-  background: rgba(0, 0, 0, 0.97);
-}
-
+/* Mobile overlay theme toggle */
 .nav__overlay .theme-toggle {
   margin-top: 24px;
   padding: 12px 28px;
   font-size: 0.85rem;
-  border: 1px solid var(--color-border);
-  color: var(--color-muted);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: rgba(255, 255, 255, 0.6);
   background: transparent;
   cursor: pointer;
   letter-spacing: 0.15em;
@@ -103,263 +152,290 @@ body::before {
 }
 
 .nav__overlay .theme-toggle:active {
-  background: rgba(10, 122, 158, 0.15);
+  background: rgba(0, 229, 255, 0.15);
   transform: scale(0.96);
 }
 
-[data-theme="dark"] .nav__overlay .theme-toggle:active {
-  background: rgba(0, 229, 255, 0.15);
+[data-theme="light"] .nav__overlay .theme-toggle {
+  border-color: var(--color-border);
+  color: var(--color-muted);
+  background: transparent;
 }
 
-.nav__overlay .nav-link {
-  color: var(--color-text);
-}
-
-.nav__logo {
+[data-theme="light"] .nav__overlay .theme-toggle:hover,
+[data-theme="light"] .nav__overlay .theme-toggle:focus {
+  border-color: var(--color-cyan);
   color: var(--color-cyan);
 }
 
+[data-theme="light"] .nav__overlay .theme-toggle:active {
+  background: rgba(0, 229, 255, 0.1);
+}
+
+[data-theme="light"] .nav__overlay .nav-link {
+  color: var(--color-text);
+}
+
+[data-theme="light"] .nav__logo {
+  color: var(--color-cyan);
+}
+
+[data-theme="light"] .nav__toggle span {
+  background: var(--color-text);
+}
+
+/* Desktop nav toggle button */
 @media (min-width: 901px) {
   .nav__overlay .theme-toggle {
     display: none;
   }
 }
 
-/* ── Hero ──────────────────────────────────────────────── */
-.hero {
+/* Hero */
+[data-theme="light"] .hero {
   background: var(--color-void);
 }
 
-.hero::before {
+[data-theme="light"] .hero::before {
   opacity: 0.02;
 }
 
-.hero::after {
+[data-theme="light"] .hero::after {
   background: radial-gradient(circle, rgba(10, 122, 158, 0.06) 0%, transparent 70%);
 }
 
-[data-theme="dark"] .hero::before {
-  opacity: 0.03;
-}
-
-[data-theme="dark"] .hero::after {
-  background: radial-gradient(circle, rgba(0, 229, 255, 0.06) 0%, transparent 70%);
-}
-
-.hero__eyebrow {
+[data-theme="light"] .hero__eyebrow {
   color: var(--color-cyan);
 }
 
-.hero__subtitle {
+[data-theme="light"] .hero__subtitle {
   color: var(--color-muted);
 }
 
-.hero__scroll {
+[data-theme="light"] .hero__scroll {
   color: var(--color-ghost);
 }
 
-/* ── Cards ─────────────────────────────────────────────── */
-.card,
-.task-card,
-.organizer-card,
-.metric-row,
-.task-organizer,
-.experience-card {
+/* Cards */
+[data-theme="light"] .card,
+[data-theme="light"] .task-card,
+[data-theme="light"] .organizer-card,
+[data-theme="light"] .metric-row,
+[data-theme="light"] .task-organizer,
+[data-theme="light"] .experience-card {
   background: var(--color-surface-1);
   border-color: var(--color-border);
 }
 
-.card:hover,
-.task-card:hover,
-.metric-row:hover {
+[data-theme="light"] .card:hover,
+[data-theme="light"] .task-card:hover,
+[data-theme="light"] .metric-row:hover {
   border-color: var(--color-border-lit);
   background: var(--color-surface-2);
 }
 
-/* ── Tables ────────────────────────────────────────────── */
-thead {
+/* JSON blocks — stay dark */
+[data-theme="light"] .json-block {
+  background: #1a1610 !important;
+  border-color: #2a2418 !important;
+  border-left-color: var(--color-cyan) !important;
+}
+
+[data-theme="light"] .json-block__header {
+  background: #1e1a12 !important;
+  border-bottom-color: #2a2418 !important;
+}
+
+[data-theme="light"] .json-block pre {
+  background: #1a1610 !important;
+  color: #d4c8b0 !important;
+}
+
+/* Tables */
+[data-theme="light"] thead {
   background: var(--color-surface-2);
 }
 
-tbody tr:nth-child(even) {
+[data-theme="light"] tbody tr:nth-child(even) {
   background: rgba(229, 220, 198, 0.4);
 }
 
-[data-theme="dark"] tbody tr:nth-child(even) {
-  background: rgba(19, 19, 26, 0.4);
-}
-
-tbody tr:hover {
+[data-theme="light"] tbody tr:hover {
   background: rgba(10, 122, 158, 0.06);
 }
 
-[data-theme="dark"] tbody tr:hover {
-  background: rgba(0, 229, 255, 0.03);
-}
-
-/* ── Badges ────────────────────────────────────────────── */
-.badge--cyan {
+/* Badges */
+[data-theme="light"] .badge--cyan {
   background: rgba(10, 122, 158, 0.08);
   border-color: rgba(10, 122, 158, 0.25);
   color: var(--color-cyan);
 }
 
-.badge--violet {
+[data-theme="light"] .badge--violet {
   background: rgba(106, 66, 196, 0.08);
   border-color: rgba(106, 66, 196, 0.25);
   color: var(--color-violet);
 }
 
-.badge--ghost {
+[data-theme="light"] .badge--ghost {
   color: var(--color-ghost);
   border-color: var(--color-ghost);
 }
 
-.weight-badge {
+[data-theme="light"] .weight-badge {
   background: rgba(184, 122, 32, 0.08);
   border-color: rgba(184, 122, 32, 0.25);
   color: var(--color-amber);
 }
 
-/* ── Scrollbar ─────────────────────────────────────────── */
-::-webkit-scrollbar-track {
+/* Scrollbar */
+[data-theme="light"] ::-webkit-scrollbar-track {
   background: var(--color-abyss);
 }
 
-::-webkit-scrollbar-thumb {
+[data-theme="light"] ::-webkit-scrollbar-thumb {
   background: var(--color-border);
 }
 
-[data-theme="dark"] ::-webkit-scrollbar-thumb {
-  background: var(--color-border-lit);
-}
-
-/* ── Footer ────────────────────────────────────────────── */
-.footer {
+/* Footer */
+[data-theme="light"] .footer {
   border-top-color: var(--color-border);
 }
 
-.footer__text {
+[data-theme="light"] .footer__text {
   color: var(--color-muted);
 }
 
-/* ── Date badge ────────────────────────────────────────── */
-.date-badge {
+/* Date badge */
+[data-theme="light"] .date-badge {
   background: rgba(10, 122, 158, 0.06);
   border-color: rgba(10, 122, 158, 0.15);
   color: var(--color-cyan);
 }
 
-.date-badge--active {
+[data-theme="light"] .date-badge--active {
   background: rgba(10, 122, 158, 0.12);
   border-color: rgba(10, 122, 158, 0.35);
 }
 
-.tl-item.past .date-badge,
-.tl-item.active .date-badge {
-  border-color: var(--color-cyan);
-  color: var(--color-cyan);
-  background: rgba(10, 122, 158, 0.06);
-}
-
-/* ── Sidebar ───────────────────────────────────────────── */
-.sidebar {
+/* Sidebar */
+[data-theme="light"] .sidebar {
   border-right-color: var(--color-border);
 }
 
-.sidebar__link {
+[data-theme="light"] .sidebar__link {
   color: var(--color-muted);
 }
 
-.sidebar__link.active {
+[data-theme="light"] .sidebar__link.active {
   color: var(--color-cyan);
   border-left-color: var(--color-cyan);
 }
 
-/* ── Inline code ───────────────────────────────────────── */
-code {
+/* Code inline */
+[data-theme="light"] code {
   background: var(--color-surface-2);
   border-color: var(--color-border);
   color: var(--color-cyan);
 }
 
-/* ── Timeline ──────────────────────────────────────────── */
-.tl-track::before {
+/* Timeline */
+[data-theme="light"] .section-timeline {
+  background: var(--color-abyss);
+}
+
+/* Timeline */
+[data-theme="light"] .tl-track::before {
   background: var(--color-border);
 }
 
-.tl-item.past .tl-event {
+[data-theme="light"] .tl-item.past .tl-event {
   color: var(--color-muted);
 }
 
-.tl-event {
+[data-theme="light"] .tl-event {
   color: var(--color-text);
 }
 
-.tl-cl,
-.tl-cr {
+[data-theme="light"] .tl-cl,
+[data-theme="light"] .tl-cr {
   background: var(--color-border);
 }
 
-.tl-item.future .tl-cl,
-.tl-item.future .tl-cr {
+[data-theme="light"] .tl-item.future .tl-cl,
+[data-theme="light"] .tl-item.future .tl-cr {
   background: var(--color-ghost);
 }
 
-.tl-dot {
+[data-theme="light"] .tl-dot {
   background: var(--color-void);
 }
 
-.tl-item.past .tl-dot {
+[data-theme="light"] .tl-item.past .tl-dot {
   background: var(--color-cyan);
 }
 
-/* ── Stat cards ────────────────────────────────────────── */
-.stat-card__label {
+[data-theme="light"] .date-badge {
+  border-color: var(--color-border);
+  color: var(--color-muted);
+  background: transparent;
+}
+
+[data-theme="light"] .tl-item.past .date-badge,
+[data-theme="light"] .tl-item.active .date-badge {
+  border-color: var(--color-cyan);
+  color: var(--color-cyan);
+  background: rgba(10, 122, 158, 0.06);
+}
+
+/* Stat cards */
+[data-theme="light"] .stat-card__label {
   color: var(--color-muted);
 }
 
-.stat-card__desc {
+[data-theme="light"] .stat-card__desc {
   color: var(--color-ghost);
 }
 
-/* ── Metric descriptions ───────────────────────────────── */
-.metric-row__desc {
+/* Metric descriptions */
+[data-theme="light"] .metric-row__desc {
   color: var(--color-muted);
 }
 
-.metric-row__desc em {
+[data-theme="light"] .metric-row__desc em {
   color: var(--color-cyan);
 }
 
-/* ── Register section ──────────────────────────────────── */
-.section-register {
+/* Register section */
+[data-theme="light"] .section-register {
   background: var(--color-surface-1);
 }
 
-.register__coming-soon {
+[data-theme="light"] .register__coming-soon {
   color: var(--color-ghost);
 }
 
-/* ── Task section eyebrow ──────────────────────────────── */
-.task-section__eyebrow {
+/* Task section eyebrow */
+[data-theme="light"] .task-section__eyebrow {
   color: var(--color-ghost);
 }
 
-/* ── Organizer card details ────────────────────────────── */
-.organizer-card__email {
+/* Organizer card email */
+[data-theme="light"] .organizer-card__email {
   color: var(--color-cyan);
 }
 
-.organizer-card__affiliation {
+[data-theme="light"] .organizer-card__affiliation {
   color: var(--color-muted);
 }
 
-.organizer-card__role {
+[data-theme="light"] .organizer-card__role {
   color: var(--color-violet);
 }
 
-/* ── Theme toggle button ───────────────────────────────── */
+/* ════════════════════════════════════════════════════════ */
+/* THEME TOGGLE BUTTON                                     */
+/* ════════════════════════════════════════════════════════ */
 .theme-toggle {
   background: none;
   border: 1px solid var(--color-border);
@@ -381,44 +457,39 @@ code {
 }
 
 .theme-toggle:active {
-  background: rgba(10, 122, 158, 0.1);
+  background: rgba(0, 229, 255, 0.1);
   transform: scale(0.96);
 }
 
-[data-theme="dark"] .theme-toggle:active {
-  background: rgba(0, 229, 255, 0.1);
-}
-
 /* ════════════════════════════════════════════════════════ */
-/* LOGO SWAP — default is light, dark theme shows the dark logo  */
+/* LOGO SWAP                                              */
 /* ════════════════════════════════════════════════════════ */
-.logo-light { display: block; }
-.logo-dark  { display: none; }
-
 [data-theme="dark"] .logo-light { display: none; }
 [data-theme="dark"] .logo-dark  { display: block; }
+[data-theme="light"] .logo-light { display: block; }
+[data-theme="light"] .logo-dark  { display: none; }
 
-/* Logo background in light mode for visibility (tan backdrop) */
-.nav__logo img {
+/* Logo background in light mode for visibility */
+[data-theme="light"] .nav__logo img {
   background: #c9bda4;
   border-radius: 4px;
   padding: 2px;
 }
 
-.hero__logo {
+[data-theme="light"] .hero__logo {
   background: #c9bda4;
   border-radius: 8px;
   padding: 8px;
 }
 
-.loader-logo-img {
+[data-theme="light"] .loader-logo-img {
   background: #c9bda4;
   border-radius: 6px;
   padding: 4px;
 }
 
 /* ════════════════════════════════════════════════════════ */
-/* SMOOTH TRANSITIONS — animate theme changes              */
+/* SMOOTH TRANSITIONS                                     */
 /* ════════════════════════════════════════════════════════ */
 html {
   transition: background-color 0.3s ease, color 0.3s ease;

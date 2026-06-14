@@ -7,26 +7,6 @@
   <meta name="theme-color" content="#f5f0e8">
   <link rel="icon" type="image/svg+xml" href="../assets/favicon.svg">
   <link rel="icon" type="image/png" sizes="32x32" href="../assets/favicon.png">
-  <link rel="preload" as="image" href="../assets/logo.svg">
-  <link rel="preload" as="image" href="../assets/logo-light.svg">
-  <link rel="modulepreload" href="../js/vendor/pretext.js">
-
-  <script>
-    // FOUC prevention: apply persisted dark theme before first paint.
-    (function () {
-      try {
-        var stored = localStorage.getItem('fire2026_theme')
-        if (stored === 'dark') {
-          document.documentElement.setAttribute('data-theme', 'dark')
-          document.querySelectorAll('.theme-toggle').forEach(function (b) {
-            b.textContent = 'Light'
-          })
-        } else {
-          document.documentElement.removeAttribute('data-theme')
-        }
-      } catch (e) { /* localStorage blocked — default to light */ }
-    })();
-  </script>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -40,7 +20,6 @@
   <link rel="stylesheet" href="../css/syntax.css">
   <link rel="stylesheet" href="../css/animations.css">
   <link rel="stylesheet" href="../css/theme.css">
-  <link rel="stylesheet" href="../css/cookie-disclosure.css">
 
   <style>
     /* ── Interactive Sycophancy Demo ──────────────────── */
@@ -909,15 +888,13 @@
     </div>
   </footer>
 
-  <!-- Scripts — all deferred. Module scripts are deferred by spec. -->
-  <script src="../js/theme.js" defer></script>
-  <script src="../js/nav.js" defer></script>
-  <script src="../js/scroll-reveal.js" defer></script>
-  <script src="../js/syntax.js" defer></script>
-  <script src="../js/typewriter.js" defer></script>
-  <script src="../js/scrollspy.js" defer></script>
-  <script src="../js/copy.js" defer></script>
+  <script src="../js/theme.js"></script>
+  <script src="../js/nav.js"></script>
+  <script src="../js/scroll-reveal.js"></script>
+  <script src="../js/syntax.js"></script>
+  <script src="../js/typewriter.js"></script>
+  <script src="../js/scrollspy.js"></script>
+  <script src="../js/copy.js"></script>
   <script src="../js/pretext-dynamic.js" type="module"></script>
-  <script src="../js/cookie-disclosure.js" defer></script>
 </body>
 </html>
