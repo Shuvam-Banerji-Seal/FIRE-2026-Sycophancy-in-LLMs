@@ -10,6 +10,25 @@
   <link rel="preload" as="image" href="assets/logo.svg">
   <link rel="preload" as="image" href="assets/logo-light.svg">
 
+  <script>
+    // FOUC prevention: apply persisted dark theme before first paint.
+    // Default theme is LIGHT; this only acts if the user has previously
+    // toggled to dark. Runs synchronously in <head> so there's no flash.
+    (function () {
+      try {
+        var stored = localStorage.getItem('fire2026_theme')
+        if (stored === 'dark') {
+          document.documentElement.setAttribute('data-theme', 'dark')
+          document.querySelectorAll('.theme-toggle').forEach(function (b) {
+            b.textContent = 'Light'
+          })
+        } else {
+          document.documentElement.removeAttribute('data-theme')
+        }
+      } catch (e) { /* localStorage blocked — default to light */ }
+    })();
+  </script>
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400;1,500&family=Fira+Code:wght@400&display=swap" rel="stylesheet">

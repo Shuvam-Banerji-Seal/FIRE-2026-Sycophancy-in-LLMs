@@ -48,6 +48,29 @@
 }
 
 /* ── Custom Properties ────────────────────────────────── */
+/*
+ * Default theme: LIGHT ("coffee paper"). New visitors see the light
+ * theme on first paint regardless of system preference. The dark theme
+ * is opt-in via the toggle button; it is applied by [data-theme="dark"].
+ *
+ * Token guide:
+ *   --color-void        page background
+ *   --color-abyss       alternating section background
+ *   --color-surface-1   card / panel background
+ *   --color-surface-2   slightly raised surface (table heads, hover)
+ *   --color-border      1px line color
+ *   --color-border-lit  hover / focus line color
+ *   --color-text        body text
+ *   --color-text-strong emphasized text (strong, pull-quote bold runs)
+ *   --color-muted       secondary text
+ *   --color-ghost       tertiary text (eyebrows, dividers)
+ *   --color-heading     h1–h6 color
+ *   --color-cyan        accent (links, focus, primary button)
+ *   --color-pink        destructive / negative
+ *   --color-green       positive
+ *   --color-amber       warning
+ *   --color-violet      secondary accent
+ */
 @layer tokens {
   :root {
     /* ── Fonts ─────────────────────────── */
@@ -55,27 +78,29 @@
     --font-body:     'Cormorant Garamond', serif;
     --font-mono:     'Fira Code', 'JetBrains Mono', monospace;
 
-    /* ── Palette ────────────────────────── */
-    --color-void:        #000000;
-    --color-abyss:       #080808;
-    --color-surface-1:   #0e0e0e;
-    --color-surface-2:   #141414;
-    --color-border:      #1c1c1c;
-    --color-border-lit:  #2a2a2a;
+    /* ── Palette — LIGHT (default) ────── */
+    --color-void:        #f5f0e8;
+    --color-abyss:       #f0ead6;
+    --color-surface-1:   #ebe4d0;
+    --color-surface-2:   #e5dcc6;
+    --color-border:      #c9bda4;
+    --color-border-lit:  #b0a288;
 
-    --color-text:        #e8e8e8;
-    --color-muted:       #888888;
-    --color-ghost:       #444444;
+    --color-text:        #2c2416;
+    --color-text-strong: #1a1408;
+    --color-muted:       #6b5d4a;
+    --color-ghost:       #9a8b74;
+    --color-heading:     #1a1408;
 
-    --color-cyan:        #00e5ff;
-    --color-pink:        #ff2d6b;
-    --color-green:       #00ff99;
-    --color-amber:       #ffb347;
-    --color-violet:      #9b6dff;
+    --color-cyan:        #0a7a9e;
+    --color-pink:        #c42050;
+    --color-green:       #1a8a5a;
+    --color-amber:       #b87a20;
+    --color-violet:      #6a42c4;
 
-    /* ── Glow variants ─────────────────── */
-    --glow-cyan:  0 0 24px rgba(0, 229, 255, 0.3), 0 0 48px rgba(0, 229, 255, 0.1);
-    --glow-pink:  0 0 24px rgba(255, 45, 107, 0.3), 0 0 48px rgba(255, 45, 107, 0.1);
+    /* ── Glow variants (muted in light) ─ */
+    --glow-cyan:  0 0 20px rgba(10, 122, 158, 0.2), 0 0 40px rgba(10, 122, 158, 0.08);
+    --glow-pink:  0 0 20px rgba(196, 32, 80, 0.2), 0 0 40px rgba(196, 32, 80, 0.08);
 
     /* ── Motion tokens ─────────────────── */
     --ease-out-expo:   cubic-bezier(0.16, 1, 0.3, 1);
@@ -97,6 +122,31 @@
     --content-padding:  clamp(16px, 5vw, 64px);
   }
 
+  /* ── DARK theme — opt-in via [data-theme="dark"] ────── */
+  [data-theme="dark"] {
+    --color-void:        #000000;
+    --color-abyss:       #080808;
+    --color-surface-1:   #0e0e0e;
+    --color-surface-2:   #141414;
+    --color-border:      #1c1c1c;
+    --color-border-lit:  #2a2a2a;
+
+    --color-text:        #e8e8e8;
+    --color-text-strong: #ffffff;
+    --color-muted:       #888888;
+    --color-ghost:       #444444;
+    --color-heading:     #ffffff;
+
+    --color-cyan:        #00e5ff;
+    --color-pink:        #ff2d6b;
+    --color-green:       #00ff99;
+    --color-amber:       #ffb347;
+    --color-violet:      #9b6dff;
+
+    --glow-cyan:  0 0 24px rgba(0, 229, 255, 0.3), 0 0 48px rgba(0, 229, 255, 0.1);
+    --glow-pink:  0 0 24px rgba(255, 45, 107, 0.3), 0 0 48px rgba(255, 45, 107, 0.1);
+  }
+
   @media (prefers-reduced-motion: reduce) {
     :root {
       --dur-instant: 0ms;
@@ -115,10 +165,15 @@
     font-size: 1.1rem;
     line-height: 1.75;
     color: var(--color-text);
-    background-color: var(--color-abyss);
+    background-color: var(--color-void);
   }
 
   ::selection {
+    background: rgba(10, 122, 158, 0.2);
+    color: var(--color-text-strong);
+  }
+
+  [data-theme="dark"] ::selection {
     background: rgba(0, 229, 255, 0.2);
     color: #ffffff;
   }
@@ -133,7 +188,7 @@
   }
 
   ::-webkit-scrollbar-track {
-    background: var(--color-abyss);
+    background: var(--color-void);
   }
 
   ::-webkit-scrollbar-thumb {

@@ -80,7 +80,7 @@
     font-size: clamp(2rem, 5vw, 4rem);
     letter-spacing: 0.06em;
     text-transform: uppercase;
-    color: #ffffff;
+    color: var(--color-heading);
     line-height: 1.15;
     max-width: 700px;
   }
@@ -265,7 +265,7 @@
     font-family: var(--font-display);
     font-weight: 700;
     font-size: var(--type-base);
-    color: #ffffff;
+    color: var(--color-heading);
     margin-bottom: 4px;
   }
 

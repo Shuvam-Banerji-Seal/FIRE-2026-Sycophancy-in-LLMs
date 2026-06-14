@@ -4,9 +4,28 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Task 1: Explainable Statute Prediction — FIRE 2026</title>
-  <meta name="theme-color" content="#000000">
+  <meta name="theme-color" content="#f5f0e8">
   <link rel="icon" type="image/svg+xml" href="../assets/favicon.svg">
   <link rel="icon" type="image/png" sizes="32x32" href="../assets/favicon.png">
+
+  <script>
+    // FOUC prevention: apply persisted dark theme before first paint.
+    // Default theme is LIGHT; this only acts if the user has previously
+    // toggled to dark. Runs synchronously in <head> so there's no flash.
+    (function () {
+      try {
+        var stored = localStorage.getItem('fire2026_theme')
+        if (stored === 'dark') {
+          document.documentElement.setAttribute('data-theme', 'dark')
+          document.querySelectorAll('.theme-toggle').forEach(function (b) {
+            b.textContent = 'Light'
+          })
+        } else {
+          document.documentElement.removeAttribute('data-theme')
+        }
+      } catch (e) { /* localStorage blocked — default to light */ }
+    })();
+  </script>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>

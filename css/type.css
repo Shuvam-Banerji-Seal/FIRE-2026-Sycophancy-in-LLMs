@@ -17,7 +17,7 @@
   /* ── Headings ────────────────────────────────────────── */
   h1, h2, h3, h4, h5, h6 {
     font-family: var(--font-display);
-    color: #ffffff;
+    color: var(--color-heading);
     line-height: 1.2;
   }
 
@@ -76,7 +76,7 @@
 
   .prose strong {
     font-weight: 600;
-    color: #ffffff;
+    color: var(--color-text-strong);
   }
 
   .prose-lg {
