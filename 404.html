@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>404 — Page Not Found · FIRE 2026</title>
+  <meta name="theme-color" content="#f5f0e8">
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon.png">
+  <link rel="preload" as="image" href="assets/logo.svg">
+  <link rel="preload" as="image" href="assets/logo-light.svg">
+
+  <script>
+    // FOUC prevention: apply persisted dark theme before first paint.
+    (function () {
+      try {
+        var stored = localStorage.getItem('fire2026_theme')
+        if (stored === 'dark') {
+          document.documentElement.setAttribute('data-theme', 'dark')
+          document.querySelectorAll('.theme-toggle').forEach(function (b) {
+            b.textContent = 'Light'
+          })
+        } else {
+          document.documentElement.removeAttribute('data-theme')
+        }
+      } catch (e) { /* localStorage blocked — default to light */ }
+    })();
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400;1,500&family=Fira+Code:wght@400&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/type.css">
+  <link rel="stylesheet" href="css/layout.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/landing.css">
+  <link rel="stylesheet" href="css/animations.css">
+  <link rel="stylesheet" href="css/theme.css">
+
+  <style>
+    /* ── 404 page layout ────────────────────────────────── */
+    .notfound {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 120px var(--content-padding) 80px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .notfound__grid {
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(var(--color-border) 1px, transparent 1px),
+        linear-gradient(90deg, var(--color-border) 1px, transparent 1px);
+      background-size: 64px 64px;
+      opacity: 0.3;
+      mask-image: radial-gradient(circle at center, black 0%, transparent 70%);
+      -webkit-mask-image: radial-gradient(circle at center, black 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .notfound__content {
+      position: relative;
+      z-index: 2;
+      max-width: 640px;
+    }
+
+    .notfound__code {
+      font-family: var(--font-display);
+      font-weight: 900;
+      font-size: clamp(8rem, 28vw, 18rem);
+      line-height: 0.85;
+      letter-spacing: -0.04em;
+      color: var(--color-cyan);
+      text-shadow: 0 0 60px rgba(10, 122, 158, 0.25);
+      margin-bottom: 24px;
+      user-select: none;
+    }
+
+    [data-theme="dark"] .notfound__code {
+      text-shadow: 0 0 60px rgba(0, 229, 255, 0.4);
+    }
+
+    .notfound__eyebrow {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: var(--type-xs);
+      letter-spacing: 0.4em;
+      text-transform: uppercase;
+      color: var(--color-muted);
+      margin-bottom: 16px;
+    }
+
+    .notfound__title {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: clamp(1.5rem, 4vw, 2.5rem);
+      letter-spacing: 0.05em;
+      color: var(--color-heading);
+      margin-bottom: 16px;
+    }
+
+    .notfound__desc {
+      font-family: var(--font-body);
+      font-size: var(--type-md);
+      color: var(--color-muted);
+      line-height: 1.7;
+      margin-bottom: 40px;
+      max-width: 480px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .notfound__actions {
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .notfound__paths {
+      margin-top: 64px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      align-items: center;
+    }
+
+    .notfound__path-label {
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      color: var(--color-ghost);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+
+    .notfound__path-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      justify-content: center;
+    }
+
+    .notfound__path {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      color: var(--color-cyan);
+      padding: 6px 12px;
+      border: 1px solid rgba(10, 122, 158, 0.3);
+      border-radius: 2px;
+      transition: all var(--dur-fast);
+    }
+
+    .notfound__path:hover {
+      background: rgba(10, 122, 158, 0.08);
+      box-shadow: var(--glow-cyan);
+    }
+  </style>
+</head>
+<body>
+
+  <div class="scroll-progress"></div>
+
+  <!-- Navigation (same shell as inner pages) -->
+  <nav class="nav" role="navigation">
+    <a href="index.html" class="nav__logo">
+      <img src="assets/logo.svg" alt="" width="28" height="28" class="logo-dark">
+      <img src="assets/logo-light.svg" alt="" width="28" height="28" class="logo-light">
+      FIRE 2026
+    </a>
+    <div class="nav__links">
+      <a href="index.html" class="nav-link">Home</a>
+      <a href="pages/task1.html" class="nav-link">Task 1: ESP</a>
+      <a href="pages/task2.html" class="nav-link">Task 2: Sycophancy</a>
+      <a href="pages/faq.html" class="nav-link">FAQ</a>
+      <a href="pages/registration.html" class="nav-link btn btn-outline" style="padding: 8px 20px; font-size: 0.7rem;">Register</a>
+      <button class="theme-toggle" aria-label="Switch theme">Dark</button>
+    </div>
+    <button class="nav__toggle" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <div class="nav__overlay">
+    <a href="index.html" class="nav-link">Home</a>
+    <a href="pages/task1.html" class="nav-link">Task 1: ESP</a>
+    <a href="pages/task2.html" class="nav-link">Task 2: Sycophancy</a>
+    <a href="pages/faq.html" class="nav-link">FAQ</a>
+    <a href="pages/registration.html" class="nav-link">Register</a>
+    <button class="theme-toggle" aria-label="Switch theme">Dark</button>
+  </div>
+
+  <main>
+    <section class="notfound">
+      <div class="notfound__grid" aria-hidden="true"></div>
+
+      <div class="notfound__content" data-reveal="fade-up">
+        <div class="notfound__code" data-reveal="fade-up">404</div>
+        <div class="notfound__eyebrow">PAGE NOT FOUND</div>
+        <h1 class="notfound__title">
+          <span class="char" style="animation-delay: 200ms">T</span><span class="char" style="animation-delay: 215ms">h</span><span class="char" style="animation-delay: 230ms">e</span><span class="char" style="animation-delay: 250ms" style="margin-right: 0.3em"> </span><span class="char" style="animation-delay: 270ms">p</span><span class="char" style="animation-delay: 285ms">a</span><span class="char" style="animation-delay: 300ms">g</span><span class="char" style="animation-delay: 315ms">e</span><span class="char" style="animation-delay: 335ms" style="margin-right: 0.3em"> </span><span class="char" style="animation-delay: 355ms">y</span><span class="char" style="animation-delay: 370ms">o</span><span class="char" style="animation-delay: 385ms">u</span><span class="char" style="animation-delay: 405ms" style="margin-right: 0.3em"> </span><span class="char" style="animation-delay: 425ms">r</span><span class="char" style="animation-delay: 440ms">e</span><span class="char" style="animation-delay: 455ms" style="margin-right: 0.3em"> </span><span class="char" style="animation-delay: 475ms">l</span><span class="char" style="animation-delay: 490ms">o</span><span class="char" style="animation-delay: 505ms">o</span><span class="char" style="animation-delay: 520ms">k</span><span class="char" style="animation-delay: 535ms">i</span><span class="char" style="animation-delay: 550ms">n</span><span class="char" style="animation-delay: 565ms">g</span><span class="char" style="animation-delay: 580ms" style="margin-right: 0.3em"> </span><span class="char" style="animation-delay: 600ms">f</span><span class="char" style="animation-delay: 615ms">o</span><span class="char" style="animation-delay: 630ms">r</span><span class="char" style="animation-delay: 650ms" style="margin-right: 0.3em"> </span><span class="char" style="animation-delay: 670ms">d</span><span class="char" style="animation-delay: 685ms">o</span><span class="char" style="animation-delay: 700ms">e</span><span class="char" style="animation-delay: 715ms">s</span><span class="char" style="animation-delay: 730ms">n</span><span class="char" style="animation-delay: 745ms">'</span><span class="char" style="animation-delay: 760ms">t</span><span class="char" style="animation-delay: 775ms" style="margin-right: 0.3em"> </span><span class="char" style="animation-delay: 795ms">e</span><span class="char" style="animation-delay: 810ms">x</span><span class="char" style="animation-delay: 825ms">i</span><span class="char" style="animation-delay: 840ms">s</span><span class="char" style="animation-delay: 855ms">t</span><span class="char" style="animation-delay: 870ms">.</span>
+        </h1>
+        <p class="notfound__desc">
+          The page you tried to reach isn't part of the FIRE 2026 track. The
+          link may be outdated, or the URL may have been mistyped. The
+          available pages are listed below.
+        </p>
+
+        <div class="notfound__actions" data-reveal="fade-up" data-reveal-delay="300">
+          <a href="index.html" class="btn btn-primary" style="font-size: 0.85rem; padding: 14px 36px;">Back to home</a>
+          <a href="pages/registration.html" class="btn btn-outline" style="font-size: 0.85rem; padding: 14px 36px;">Register for the track</a>
+        </div>
+
+        <div class="notfound__paths" data-reveal="fade-up" data-reveal-delay="500">
+          <div class="notfound__path-label">Available pages</div>
+          <div class="notfound__path-list">
+            <a href="index.html" class="notfound__path">/index.html</a>
+            <a href="pages/task1.html" class="notfound__path">/pages/task1.html</a>
+            <a href="pages/task2.html" class="notfound__path">/pages/task2.html</a>
+            <a href="pages/faq.html" class="notfound__path">/pages/faq.html</a>
+            <a href="pages/organizers.html" class="notfound__path">/pages/organizers.html</a>
+            <a href="pages/registration.html" class="notfound__path">/pages/registration.html</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p class="footer__text">FIRE 2026 — Forum for Information Retrieval and Evaluation</p>
+    <div class="footer__links">
+      <a href="https://fire-lab.github.io/" target="_blank" rel="noopener">FIRE 2026</a>
+      <a href="pages/faq.html">FAQ</a>
+      <a href="pages/organizers.html">Contact</a>
+    </div>
+  </footer>
+
+  <script src="js/theme.js" defer></script>
+  <script src="js/nav.js" defer></script>
+  <script src="js/scroll-reveal.js" defer></script>
+  <script src="js/cookie-disclosure.js" defer></script>
+</body>
+</html>
