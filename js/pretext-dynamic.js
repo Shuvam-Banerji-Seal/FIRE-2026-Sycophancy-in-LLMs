@@ -1,21 +1,26 @@
 // pretext-dynamic.js — Comprehensive dynamic text sizing with pretext
+//
+// pretext is vendored at js/vendor/pretext.js (version pinned in the
+// utils/pretext git submodule). We import from the local vendored copy
+// instead of a CDN to keep the site self-contained and reproducible —
+// see design.md §7 and the .notes/ scratch for upgrade instructions.
 
 (function () {
   'use strict'
 
-  const PRETEXT_CDN = 'https://esm.sh/gh/chenglou/pretext@latest?no-check'
+  const PRETEXT_LOCAL = './vendor/pretext.js'
   let prepare, layout, measureNaturalWidth, measureLineStats
 
   async function loadPretext() {
     try {
-      const mod = await import(PRETEXT_CDN)
+      const mod = await import(PRETEXT_LOCAL)
       prepare = mod.prepare
       layout = mod.layout
       measureNaturalWidth = mod.measureNaturalWidth
       measureLineStats = mod.measureLineStats
       return true
     } catch (e) {
-      console.warn('Pretext unavailable, using fallback sizing')
+      console.warn('Pretext unavailable, using fallback sizing:', e)
       return false
     }
   }

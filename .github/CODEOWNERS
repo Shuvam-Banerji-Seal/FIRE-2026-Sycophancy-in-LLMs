@@ -1,0 +1,30 @@
+# CODEOWNERS — auto-assigned reviewers for every PR
+#
+# Syntax:  pattern  @owner
+# Order:   last matching pattern wins
+# Docs:    https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-code-owners
+
+# ── Default: site owner is the reviewer for everything ─────────────
+*   @Shuvam-Banerji-Seal
+
+# ── Task-content pages need an organizer sign-off, not just any
+#    contributor, because prose changes ship to participants. ─────────
+/pages/task1.html        @Shuvam-Banerji-Seal
+/pages/task2.html        @Shuvam-Banerji-Seal
+/pages/faq.html          @Shuvam-Banerji-Seal
+/pages/organizers.html   @Shuvam-Banerji-Seal
+/pages/registration.html @Shuvam-Banerji-Seal
+
+# ── Deployment & infrastructure changes are owner-only. ────────────
+/.github/                @Shuvam-Banerji-Seal
+/.github/workflows/      @Shuvam-Banerji-Seal
+/CNAME                   @Shuvam-Banerji-Seal
+/.nojekyll               @Shuvam-Banerji-Seal
+
+# ── Third-party / vendored code is owner-curated, never accept
+#    PRs that modify it directly — re-vendor from upstream instead. ──
+/js/vendor/              @Shuvam-Banerji-Seal
+/utils/pretext/          @Shuvam-Banerji-Seal
+
+# ── Legal text needs owner review before changes. ─────────────────
+/LICENSE                 @Shuvam-Banerji-Seal
