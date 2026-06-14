@@ -118,6 +118,17 @@
   color: #ffffff;
 }
 
+/* In dark mode, the cyan accent is bright enough that white text
+   disappears into it. Switch to dark text on cyan in dark mode. */
+[data-theme="dark"] .cookie-disclosure__btn--primary {
+  color: #0a1418;
+}
+
+[data-theme="dark"] .cookie-disclosure__btn--primary:hover,
+[data-theme="dark"] .cookie-disclosure__btn--primary:focus {
+  color: #0a1418;
+}
+
 @media (max-width: 600px) {
   .cookie-disclosure {
     bottom: 8px;

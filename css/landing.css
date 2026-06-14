@@ -679,7 +679,7 @@
     font-family: var(--font-display);
     font-weight: 400;
     font-size: var(--type-md);
-    color: #ffffff;
+    color: var(--color-heading);
     margin-bottom: 4px;
   }
 
@@ -702,7 +702,7 @@
   }
 
   .organizer-card__email:hover {
-    color: #ffffff;
+    color: var(--color-text-strong);
   }
 
   .organizer-card__role {
