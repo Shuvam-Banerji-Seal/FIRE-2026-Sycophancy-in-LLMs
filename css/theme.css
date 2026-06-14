@@ -27,15 +27,21 @@ body::before {
 }
 
 /* ── JSON & code blocks stay dark in BOTH themes ───────── */
+/*
+ * The interior stays dark in both modes because the syntax
+ * highlighter is calibrated for a dark background. The border,
+ * however, follows the theme so the block integrates with the
+ * page (tan in light, dark in dark).
+ */
 .json-block {
   background: #1a1610;
-  border-color: #2a2418;
+  border-color: var(--color-border);
   border-left-color: var(--color-cyan);
 }
 
 .json-block__header {
   background: #1e1a12;
-  border-bottom-color: #2a2418;
+  border-bottom-color: var(--color-border);
 }
 
 .json-block pre {
