@@ -1,10 +1,17 @@
-/* loader.css - Session-cookie loader */
+/* loader.css — Session-cookie loader overlay (default = light theme)
+ *
+ * The loader appears on first visit (gated by the
+ * `fire2026_loader_seen` cookie). It uses the design tokens directly
+ * so the same overlay renders correctly in both light and dark themes
+ * — the inline FOUC-prevention script in each page's <head> sets the
+ * data-theme attribute before the page paints.
+ */
 
 .loader-overlay {
   position: fixed;
   inset: 0;
   z-index: 9999;
-  background: #000;
+  background: var(--color-void);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -45,6 +52,10 @@ body.loader-done .site-hidden {
 .loader-logo-img {
   width: 56px;
   height: 56px;
+  filter: drop-shadow(0 0 12px rgba(10, 122, 158, 0.3)) drop-shadow(0 0 24px rgba(196, 32, 80, 0.2));
+}
+
+[data-theme="dark"] .loader-logo-img {
   filter: drop-shadow(0 0 12px rgba(0, 229, 255, 0.3)) drop-shadow(0 0 24px rgba(255, 45, 107, 0.2));
 }
 
@@ -53,20 +64,28 @@ body.loader-done .site-hidden {
   font-weight: 700;
   font-size: 14px;
   letter-spacing: 5px;
-  color: #00e5ff;
+  color: var(--color-cyan);
   text-transform: uppercase;
+  text-shadow: 0 0 7px rgba(10, 122, 158, 0.4), 0 0 20px rgba(10, 122, 158, 0.15);
+}
+
+[data-theme="dark"] .loader-wordmark {
   text-shadow: 0 0 7px rgba(0, 229, 255, 0.6), 0 0 20px rgba(0, 229, 255, 0.3);
 }
 
 .loader-wordmark span {
-  color: #ff2d6b;
+  color: var(--color-pink);
+  text-shadow: 0 0 7px rgba(196, 32, 80, 0.4), 0 0 20px rgba(196, 32, 80, 0.15);
+}
+
+[data-theme="dark"] .loader-wordmark span {
   text-shadow: 0 0 7px rgba(255, 45, 107, 0.6), 0 0 20px rgba(255, 45, 107, 0.3);
 }
 
 .loader-subtitle {
   font-family: var(--font-body);
   font-size: 10px;
-  color: #555;
+  color: var(--color-muted);
   letter-spacing: 0.5px;
 }
 
@@ -74,7 +93,7 @@ body.loader-done .site-hidden {
   font-family: var(--font-body);
   font-size: 13px;
   font-weight: 500;
-  color: #444;
+  color: var(--color-muted);
   margin-bottom: 24px;
   letter-spacing: 0.5px;
 }
@@ -86,8 +105,8 @@ body.loader-done .site-hidden {
 
 .chat-box {
   width: 300px;
-  background: #0a0a0a;
-  border: 1px solid #1a1a1a;
+  background: var(--color-surface-1);
+  border: 1px solid var(--color-border);
   border-radius: 8px;
   overflow: hidden;
   transition: background-color 0.3s ease, border-color 0.3s ease;
@@ -97,12 +116,16 @@ body.loader-done .site-hidden {
   padding: 10px 14px;
   font-size: 11px;
   font-weight: 600;
-  color: #333;
-  border-bottom: 1px solid #1a1a1a;
+  color: var(--color-muted);
+  border-bottom: 1px solid var(--color-border);
   display: flex;
   align-items: center;
   gap: 8px;
   transition: color 0.3s ease, border-bottom-color 0.3s ease;
+}
+
+.chat-header svg {
+  stroke: var(--color-muted);
 }
 
 .tag {
@@ -110,9 +133,9 @@ body.loader-done .site-hidden {
   padding: 2px 6px;
   border-radius: 3px;
   font-weight: 600;
-  background: #111;
-  color: #333;
-  border: 1px solid #1a1a1a;
+  background: var(--color-surface-2);
+  color: var(--color-muted);
+  border: 1px solid var(--color-border);
 }
 
 .chat-body {
@@ -140,9 +163,9 @@ body.loader-done .site-hidden {
 }
 
 .user-msg {
-  background: #0d0d0d;
-  border: 1px solid #1a1a1a;
-  color: #e8e8e8;
+  background: var(--color-surface-2);
+  border: 1px solid var(--color-border);
+  color: var(--color-text);
   font-weight: 500;
   display: flex;
   align-items: flex-start;
@@ -151,18 +174,19 @@ body.loader-done .site-hidden {
 }
 
 .user-msg svg { flex-shrink: 0; margin-top: 2px; }
+.user-msg svg { stroke: var(--color-muted); }
 
 .user-msg mark {
   background: none;
-  color: #fff;
+  color: var(--color-text-strong);
   font-size: 14px;
   font-weight: 700;
 }
 
 .ai-msg {
-  background: #080808;
-  border: 1px solid #1a1a1a;
-  color: #e0e0e0;
+  background: var(--color-abyss);
+  border: 1px solid var(--color-border);
+  color: var(--color-text);
   font-weight: 500;
   display: flex;
   align-items: flex-start;
@@ -170,14 +194,14 @@ body.loader-done .site-hidden {
   transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
 }
 
-.ai-msg svg { flex-shrink: 0; margin-top: 2px; }
+.ai-msg svg { flex-shrink: 0; margin-top: 2px; stroke: var(--color-muted); }
 
 .ai-label {
   font-size: 9px;
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 1px;
-  color: #2a2a2a;
+  color: var(--color-ghost);
   margin-bottom: 3px;
 }
 
@@ -191,7 +215,7 @@ body.loader-done .site-hidden {
 
 .typing-dots span {
   width: 5px; height: 5px;
-  background: #2a2a2a;
+  background: var(--color-ghost);
   border-radius: 50%;
   animation: bounce 1s ease-in-out infinite;
 }
@@ -208,7 +232,7 @@ body.loader-done .site-hidden {
   display: inline-block;
   width: 1.5px;
   height: 12px;
-  background: #555;
+  background: var(--color-muted);
   vertical-align: text-bottom;
   animation: blink 0.5s step-end infinite;
 }
@@ -219,10 +243,14 @@ body.loader-done .site-hidden {
   margin-top: 24px;
   font-size: 15px;
   font-weight: 600;
-  color: #fff;
-  text-shadow: 0 0 20px rgba(255,255,255,0.15);
+  color: var(--color-text-strong);
+  text-shadow: 0 0 20px rgba(0, 0, 0, 0.05);
   opacity: 0;
   transition: opacity 0.6s ease;
+}
+
+[data-theme="dark"] .bottom-text {
+  text-shadow: 0 0 20px rgba(255, 255, 255, 0.15);
 }
 
 .bottom-text.visible { opacity: 1; }
@@ -230,92 +258,4 @@ body.loader-done .site-hidden {
 @media (max-width: 700px) {
   .chats { flex-direction: column; gap: 12px; }
   .chat-box { width: 90vw; }
-}
-
-/* ── Light Theme Overrides ──────────────────────────── */
-[data-theme="light"] .loader-overlay {
-  background: #f5f0e8;
-}
-
-[data-theme="light"] .loader-wordmark {
-  color: #0a7a9e;
-  text-shadow: 0 0 7px rgba(10, 122, 158, 0.4), 0 0 20px rgba(10, 122, 158, 0.15);
-}
-
-[data-theme="light"] .loader-wordmark span {
-  color: #c42050;
-  text-shadow: 0 0 7px rgba(196, 32, 80, 0.4), 0 0 20px rgba(196, 32, 80, 0.15);
-}
-
-[data-theme="light"] .loader-subtitle {
-  color: #6b5d4a;
-}
-
-[data-theme="light"] .loader-heading {
-  color: #6b5d4a;
-}
-
-[data-theme="light"] .chat-box {
-  background: #ebe4d0;
-  border-color: #c9bda4;
-}
-
-[data-theme="light"] .chat-header {
-  color: #6b5d4a;
-  border-bottom-color: #c9bda4;
-}
-
-[data-theme="light"] .chat-header svg {
-  stroke: #6b5d4a;
-}
-
-[data-theme="light"] .tag {
-  background: #e5dcc6;
-  color: #6b5d4a;
-  border-color: #c9bda4;
-}
-
-[data-theme="light"] .user-msg {
-  background: #e5dcc6;
-  border-color: #c9bda4;
-  color: #2c2416;
-}
-
-[data-theme="light"] .user-msg mark {
-  color: #2c2416;
-}
-
-[data-theme="light"] .user-msg svg {
-  stroke: #6b5d4a;
-}
-
-[data-theme="light"] .ai-msg {
-  background: #f0ead6;
-  border-color: #c9bda4;
-  color: #2c2416;
-}
-
-[data-theme="light"] .ai-msg svg {
-  stroke: #6b5d4a;
-}
-
-[data-theme="light"] .ai-label {
-  color: #9a8b74;
-}
-
-[data-theme="light"] .typing-dots span {
-  background: #9a8b74;
-}
-
-[data-theme="light"] .cursor {
-  background: #6b5d4a;
-}
-
-[data-theme="light"] .bottom-text {
-  color: #2c2416;
-  text-shadow: none;
-}
-
-[data-theme="light"] .loader-logo-img {
-  filter: drop-shadow(0 0 12px rgba(10, 122, 158, 0.2)) drop-shadow(0 0 24px rgba(196, 32, 80, 0.1));
 }

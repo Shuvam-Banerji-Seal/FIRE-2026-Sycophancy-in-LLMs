@@ -132,7 +132,7 @@
     font-family: var(--font-display);
     font-weight: 400;
     font-size: var(--type-base);
-    color: #ffffff;
+    color: var(--color-heading);
     margin-bottom: 2px;
   }
 
@@ -217,7 +217,7 @@
     font-family: var(--font-display);
     font-weight: 700;
     font-size: var(--type-lg);
-    color: #ffffff;
+    color: var(--color-heading);
     letter-spacing: 0.03em;
   }
 
@@ -239,7 +239,7 @@
   }
 
   .organizer-card__email:hover {
-    color: #ffffff;
+    color: var(--color-text-strong);
   }
 
   .organizer-card__role {
@@ -290,7 +290,7 @@
     font-family: var(--font-display);
     font-weight: 700;
     font-size: var(--type-base);
-    color: #ffffff;
+    color: var(--color-heading);
   }
 
   .experience-card__affil {
